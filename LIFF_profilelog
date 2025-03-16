@@ -1,54 +1,40 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIFF 自動登錄 & 上傳資料</title>
-    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-</head>
-<body>
-    <h2>LIFF 自動登錄測試</h2>
-    <button onclick="login()">登入 LINE 並上傳資料</button>
+<script>
+    const LIFF_ID = "2007051903-2ajakdbl";
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbznO1jBGPuR4OyztNhA-E-_D1ZWcNFV2nCuCQXgq8wDVf3pC1FvGVYLPmgz0_5Vob8O/exec";
 
-    <script>
-        const LIFF_ID = "2007051903-2ajakdbl"; 
-        const GAS_URL = "https://script.google.com/macros/s/AKfycbznO1jBGPuR4OyztNhA-E-_D1ZWcNFV2nCuCQXgq8wDVf3pC1FvGVYLPmgz0_5Vob8O/exec"; 
+    async function login() {
+        try {
+            await liff.init({ liffId: LIFF_ID });
 
-        async function login() {
-            try {
-                await liff.init({ liffId: LIFF_ID });
-
-                if (!liff.isLoggedIn()) {
-                    liff.login();
-                    return;
-                }
-
-                const profile = await liff.getProfile();
-                const userData = {
-                    userId: profile.userId,
-                    displayName: profile.displayName,
-                    pictureUrl: profile.pictureUrl,
-                    statusMessage: profile.statusMessage || ""
-                };
-
-                console.log("User Data:", userData);
-
-                // 傳送資料到 Google 試算表
-                const response = await fetch(GAS_URL, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(userData)
-                });
-
-                const result = await response.json();
-                console.log("成功寫入試算表:", result);
-                alert("成功登錄並寫入資料！");
-
-            } catch (error) {
-                console.error("錯誤:", error);
-                alert("寫入失敗！");
+            if (!liff.isLoggedIn()) {
+                liff.login();
+                return;
             }
+
+            const profile = await liff.getProfile();
+            const userData = {
+                userId: profile.userId,
+                displayName: profile.displayName,
+                pictureUrl: profile.pictureUrl,
+                statusMessage: profile.statusMessage || ""
+            };
+
+            console.log("User Data:", userData);
+
+            const response = await fetch(GAS_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(userData)
+            });
+
+            const result = await response.json();
+            console.log("成功寫入試算表:", result);
+            alert("成功登錄並寫入資料！");
+
+        } catch (error) {
+            console.error("錯誤:", error);
+            alert("寫入失敗！");
         }
-    </script>
-</body>
-</html>
+    }
+</script>
+
