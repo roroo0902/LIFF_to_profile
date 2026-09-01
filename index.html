@@ -1,57 +1,281 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-Hant">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIFF 自動登錄 & 上傳資料</title>
-    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+  <title>取消拿藥</title>
 </head>
+
 <body>
-    <h2>LIFF 登入測試</h2>
-    <button onclick="login()">登入 LINE 並寫入試算表</button>
 
-    <script>
-        const LIFF_ID = "2007051903-2ajakdbl"; 
-        const GAS_URL = "https://script.google.com/macros/s/AKfycby8uN4sqGwNvwTImPcI6hhiiiMhIyL1prmJYdfPAsD8Z9o6IzsZ-zqIQK1DvTyU-CBI/exec"; 
+  <h2>取消拿藥申請</h2>
 
-        async function login() {
-            try {
-                console.log("初始化 LIFF...");
-                await liff.init({ liffId: LIFF_ID });
-                console.log("LIFF 初始化成功！");
+  <div id="status">
+    LINE 資料讀取中...
+  </div>
 
-                if (!liff.isLoggedIn()) {
-                    console.log("未登入，正在導向 LINE 登入...");
-                    liff.login();
-                    return;
-                }
+  <div id="medicineData" style="display:none;">
 
-                console.log("已登入，獲取使用者資訊...");
-                const profile = await liff.getProfile();
-                const userData = {
-                    userId: profile.userId,
-                    displayName: profile.displayName
-                };
+    <p>
+      姓名：
+      <span id="name"></span>
+    </p>
 
-                console.log("使用者資料：", userData);
+    <p>
+      拿藥天數：
+      <span id="medicineDays"></span>
+    </p>
 
-                // 送資料到 Google 試算表
-                const response = await fetch(GAS_URL, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(userData)
-                });
+    <p>
+      預計取藥時間：
+      <span id="pickupTime"></span>
+    </p>
 
-                const result = await response.json();
-                console.log("成功寫入試算表:", result);
-                alert("成功登錄並寫入資料！");
+    <textarea
+      id="cancelReason"
+      placeholder="取消原因（選填）"
+    ></textarea>
 
-            } catch (error) {
-                console.error("錯誤:", error);
-                alert("發生錯誤，請查看 Console！");
-            }
-        }
-    </script>
+    <br><br>
+
+    <button onclick="cancelMedicine()">
+      確認取消
+    </button>
+
+  </div>
+
+
+<script>
+
+const LIFF_ID =
+  "你的LIFF_ID";
+
+const GAS_URL =
+  "你的GAS Web App /exec網址";
+
+
+let currentUserID = "";
+let currentUserName = "";
+
+let currentRowNumber = null;
+
+
+/*********************************
+ * 初始化
+ *********************************/
+window.onload = async function () {
+
+  try {
+
+    await liff.init({
+      liffId: LIFF_ID
+    });
+
+
+    if (!liff.isLoggedIn()) {
+      liff.login();
+      return;
+    }
+
+
+    const profile =
+      await liff.getProfile();
+
+
+    currentUserID =
+      profile.userId;
+
+    currentUserName =
+      profile.displayName;
+
+
+    document.getElementById(
+      "status"
+    ).innerText =
+      "正在查詢您的拿藥資料...";
+
+
+    await loadMedicineData();
+
+
+  } catch (error) {
+
+    document.getElementById(
+      "status"
+    ).innerText =
+      "LINE資料取得失敗：" +
+      error.message;
+
+  }
+
+};
+
+
+/*********************************
+ * 查詢拿藥資料
+ *********************************/
+async function loadMedicineData() {
+
+  const url =
+    GAS_URL +
+    "?action=getLatest" +
+    "&userID=" +
+    encodeURIComponent(
+      currentUserID
+    );
+
+
+  const response =
+    await fetch(url);
+
+
+  const result =
+    await response.json();
+
+
+  if (!result.found) {
+
+    document.getElementById(
+      "status"
+    ).innerText =
+      "目前沒有可取消的拿藥申請";
+
+    return;
+
+  }
+
+
+  currentRowNumber =
+    result.rowNumber;
+
+
+  document.getElementById(
+    "name"
+  ).innerText =
+    result.name;
+
+
+  document.getElementById(
+    "medicineDays"
+  ).innerText =
+    result.medicineDays;
+
+
+  document.getElementById(
+    "pickupTime"
+  ).innerText =
+    result.pickupTime;
+
+
+  document.getElementById(
+    "status"
+  ).innerText =
+    "找到您的拿藥申請";
+
+
+  document.getElementById(
+    "medicineData"
+  ).style.display =
+    "block";
+
+}
+
+
+/*********************************
+ * 取消
+ *********************************/
+async function cancelMedicine() {
+
+  const cancelReason =
+    document
+      .getElementById(
+        "cancelReason"
+      )
+      .value
+      .trim();
+
+
+  const payload = {
+
+    action:
+      "cancelMedicine",
+
+    rowNumber:
+      currentRowNumber,
+
+    userID:
+      currentUserID,
+
+    userName:
+      currentUserName,
+
+    cancelReason:
+      cancelReason
+
+  };
+
+
+  const response =
+    await fetch(
+      GAS_URL,
+      {
+
+        method:
+          "POST",
+
+        body:
+          JSON.stringify(
+            payload
+          )
+
+      }
+    );
+
+
+  const result =
+    await response.json();
+
+
+  if (result.success) {
+
+    alert(
+      "已成功取消拿藥申請"
+    );
+
+
+    document.getElementById(
+      "medicineData"
+    ).style.display =
+      "none";
+
+
+    document.getElementById(
+      "status"
+    ).innerText =
+      "✅ 已完成取消";
+
+
+  } else {
+
+    alert(
+      result.message ||
+      "取消失敗"
+    );
+
+  }
+
+}
+
+</script>
+
 </body>
-</html>
 
+</html>
