@@ -667,109 +667,336 @@
     }
 
 
-    /* ============================
-       MOBILE
-    ============================ */
+/* ============================
+   MOBILE
+============================ */
 
-    @media(max-width: 700px) {
+@media(max-width: 700px) {
 
-      body {
-        padding:
-          14px
-          10px
-          40px;
-      }
-
-      .hero {
-        min-height: 235px;
-
-        padding:
-          16px
-          14px
-          15px
-          12px;
-      }
-
-      .brand {
-        gap: 7px;
-      }
-
-      .brand-mark {
-        width: 29px;
-        height: 29px;
-      }
-
-      .brand-name {
-        font-size: 18px;
-      }
-
-      .title-row {
-        margin-top: 28px;
-        gap: 8px;
-      }
-
-      .cancel-icon {
-        width: 43px;
-        height: 43px;
-        border-radius: 12px;
-      }
-
-      .cancel-icon svg {
-        width: 28px;
-        height: 28px;
-      }
-
-      h1 {
-        font-size: 29px;
-        white-space: nowrap;
-      }
-
-      .subtitle {
-        margin-top: 10px;
-
-        max-width: 68%;
-
-        font-size: 13px;
-
-        line-height: 1.65;
-      }
-
-  .character-area {
-    top: 6px;
-    right: -8px;
-
-    width: 240px;
-    height: 225px;
+  body {
+    padding:
+      12px
+      10px
+      40px;
   }
 
+
+  /* =========================
+     手機 HERO
+  ========================= */
+
+  .hero {
+    position: relative;
+
+    min-height: 245px;
+
+    padding:
+      18px
+      12px
+      18px
+      12px;
+
+    overflow: hidden;
+
+    isolation: isolate;
+  }
+
+
+  /* =========================
+     瑞恩中醫
+  ========================= */
+
+  .brand {
+    position: relative;
+
+    z-index: 10;
+
+    gap: 7px;
+
+    padding-bottom: 7px;
+
+    max-width: 150px;
+  }
+
+
+  .brand-mark {
+    width: 27px;
+    height: 27px;
+  }
+
+
+  .brand-name {
+    font-size: 18px;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+  }
+
+
+  /* =========================
+     標題
+  ========================= */
+
+  .title-row {
+    position: relative;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 30px;
+
+    width: 62%;
+  }
+
+
+  .cancel-icon {
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+
+    border-radius: 11px;
+  }
+
+
+  .cancel-icon svg {
+    width: 27px;
+    height: 27px;
+  }
+
+
+  h1 {
+    font-size: 27px;
+
+    line-height: 1.15;
+
+    letter-spacing: 0;
+
+    white-space: nowrap;
+
+    position: relative;
+
+    z-index: 10;
+  }
+
+
+  /* =========================
+     副標題
+  ========================= */
+
+  .subtitle {
+    position: relative;
+
+    z-index: 10;
+
+    width: 58%;
+
+    max-width: 58%;
+
+    margin-top: 14px;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    color: #75665a;
+  }
+
+
+  /* =========================
+     人物
+  ========================= */
+
+  .character-area {
+    position: absolute;
+
+    top: 8px;
+
+    right: -20px;
+
+    width: 205px;
+
+    height: 225px;
+
+    z-index: 1;
+
+    pointer-events: none;
+  }
+
+
   .character-image {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+      url("https://i.ibb.co/Z1kPkDK9/image.jpg")
+      right top
+      / contain
+      no-repeat;
+
     opacity: 1;
   }
 
-      .notice {
-        margin-top: 2px;
 
-        padding:
-          14px
-          15px;
+  /*
+   * 靠近文字的左側
+   * 只稍微淡化
+   */
+  .character-area::before {
+    content: "";
 
-        font-size: 14px;
-      }
+    position: absolute;
 
-      .card {
-        margin-top: 18px;
+    inset: 0;
 
-        padding:
-          20px
-          17px;
-      }
+    z-index: 2;
 
-      .time-grid {
-        grid-template-columns:
-          1fr;
-      }
+    background:
+      linear-gradient(
+        90deg,
 
-    }
+        #fbf8f3 0%,
+
+        rgba(251,248,243,.70) 8%,
+
+        rgba(251,248,243,.26) 20%,
+
+        rgba(251,248,243,.04) 32%,
+
+        rgba(251,248,243,0) 42%
+      );
+  }
+
+
+  /*
+   * 人物底部輕微融入背景
+   */
+  .character-area::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    background:
+      linear-gradient(
+        180deg,
+
+        rgba(251,248,243,0) 82%,
+
+        rgba(251,248,243,.08) 92%,
+
+        rgba(251,248,243,.20) 100%
+      );
+  }
+
+
+  /* =========================
+     提示框
+  ========================= */
+
+  .notice {
+    margin-top: 2px;
+
+    padding:
+      13px
+      14px;
+
+    border-radius: 14px;
+
+    font-size: 13px;
+
+    line-height: 1.75;
+  }
+
+
+  .notice-row {
+    gap: 8px;
+  }
+
+
+  .notice-icon {
+    width: 21px;
+    height: 21px;
+  }
+
+
+  /* =========================
+     表單
+  ========================= */
+
+  .card {
+    margin-top: 18px;
+
+    padding:
+      20px
+      17px;
+
+    border-radius: 22px;
+  }
+
+
+  #status {
+    margin-bottom: 22px;
+
+    padding:
+      14px
+      10px;
+
+    font-size: 14px;
+  }
+
+
+  .label {
+    font-size: 16px;
+  }
+
+
+  input,
+  select,
+  textarea {
+    min-height: 52px;
+
+    font-size: 16px;
+
+    border-radius: 13px;
+  }
+
+
+  /* 日期與時段手機上下排列 */
+  .time-grid {
+    grid-template-columns:
+      1fr;
+
+    gap: 10px;
+  }
+
+
+  .reason-item {
+    min-height: 55px;
+
+    padding:
+      14px
+      15px;
+  }
+
+
+  button {
+    min-height: 54px;
+
+    font-size: 17px;
+  }
+
+}
 
   </style>
 
