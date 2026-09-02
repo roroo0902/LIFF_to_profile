@@ -2,6 +2,7 @@
 <html lang="zh-Hant">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -59,9 +60,9 @@
     }
 
 
-    /* ============================
+    /* ==================================================
        HERO
-    ============================ */
+    ================================================== */
 
     .hero {
       position: relative;
@@ -80,13 +81,14 @@
     }
 
 
-    /* ============================
+    /* ==================================================
        瑞恩中醫品牌
-    ============================ */
+    ================================================== */
 
     .brand {
       display: inline-flex;
       align-items: center;
+
       gap: 11px;
 
       padding-bottom: 9px;
@@ -96,7 +98,7 @@
         #dec8ae;
 
       position: relative;
-      z-index: 5;
+      z-index: 10;
     }
 
     .brand-mark {
@@ -123,9 +125,9 @@
     }
 
 
-    /* ============================
+    /* ==================================================
        標題
-    ============================ */
+    ================================================== */
 
     .title-row {
       display: flex;
@@ -136,7 +138,7 @@
       margin-top: 38px;
 
       position: relative;
-      z-index: 5;
+      z-index: 10;
     }
 
     .cancel-icon {
@@ -205,13 +207,13 @@
       line-height: 1.8;
 
       position: relative;
-      z-index: 5;
+      z-index: 10;
     }
 
 
-    /* ============================
-       Q版人物背景
-    ============================ */
+    /* ==================================================
+       Q版人物
+    ================================================== */
 
     .character-area {
       position: absolute;
@@ -222,7 +224,7 @@
       width: 470px;
       height: 335px;
 
-      z-index: -1;
+      z-index: 1;
 
       pointer-events: none;
     }
@@ -241,38 +243,7 @@
       opacity: 1;
     }
 
-
-    /* 左側非常輕微融合 */
-
     .character-area::before {
-      content: "";
-
-      position: absolute;
-
-      inset: 0;
-
-      z-index: 1;
-
-      background:
-        linear-gradient(
-          90deg,
-
-          #fbf8f3 0%,
-
-          rgba(251,248,243,.55) 7%,
-
-          rgba(251,248,243,.18) 18%,
-
-          rgba(251,248,243,.03) 30%,
-
-          rgba(251,248,243,0) 42%
-        );
-    }
-
-
-    /* 下方柔和淡出 */
-
-    .character-area::after {
       content: "";
 
       position: absolute;
@@ -283,20 +254,45 @@
 
       background:
         linear-gradient(
+          90deg,
+
+          #fbf8f3 0%,
+
+          rgba(251,248,243,.50) 7%,
+
+          rgba(251,248,243,.14) 18%,
+
+          rgba(251,248,243,.02) 30%,
+
+          rgba(251,248,243,0) 42%
+        );
+    }
+
+    .character-area::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 3;
+
+      background:
+        linear-gradient(
           180deg,
 
-          rgba(251,248,243,0) 78%,
+          rgba(251,248,243,0) 80%,
 
-          rgba(251,248,243,.08) 88%,
+          rgba(251,248,243,.06) 90%,
 
-          rgba(251,248,243,.28) 100%
+          rgba(251,248,243,.22) 100%
         );
     }
 
 
-    /* ============================
+    /* ==================================================
        NOTICE
-    ============================ */
+    ================================================== */
 
     .notice {
       margin-top: 4px;
@@ -323,6 +319,7 @@
     .notice-row {
       display: flex;
       align-items: flex-start;
+
       gap: 10px;
     }
 
@@ -336,9 +333,9 @@
     }
 
 
-    /* ============================
-       FORM CARD
-    ============================ */
+    /* ==================================================
+       FORM
+    ================================================== */
 
     .card {
       margin-top: 26px;
@@ -414,6 +411,7 @@
 
     .required {
       color: #cb5149;
+
       margin-left: 3px;
     }
 
@@ -460,6 +458,7 @@
 
     textarea {
       min-height: 100px;
+
       resize: vertical;
     }
 
@@ -476,16 +475,18 @@
     #otherDaysBox,
     #otherReasonBox {
       display: none;
+
       margin-top: 12px;
     }
 
 
-    /* ============================
+    /* ==================================================
        取消原因
-    ============================ */
+    ================================================== */
 
     .reason-group {
       display: flex;
+
       flex-direction: column;
 
       gap: 11px;
@@ -493,6 +494,7 @@
 
     .reason-item {
       display: flex;
+
       align-items: center;
 
       gap: 11px;
@@ -516,6 +518,7 @@
 
     .reason-item:hover {
       background: #fffaf5;
+
       border-color: #ba997a;
     }
 
@@ -536,9 +539,9 @@
     }
 
 
-    /* ============================
+    /* ==================================================
        WARNING
-    ============================ */
+    ================================================== */
 
     .warning {
       margin-top: 10px;
@@ -559,9 +562,9 @@
     }
 
 
-    /* ============================
+    /* ==================================================
        BUTTON
-    ============================ */
+    ================================================== */
 
     button {
       width: 100%;
@@ -607,48 +610,59 @@
 
     button:disabled {
       opacity: .55;
+
       transform: none;
+
       cursor: not-allowed;
     }
 
 
-    /* ============================
+    /* ==================================================
        SUCCESS
-    ============================ */
+    ================================================== */
 
     #successPage {
       display: none;
+
       text-align: center;
     }
 
     .success-icon {
       font-size: 65px;
+
       margin-bottom: 12px;
     }
 
     .success-title {
       color: #72513b;
+
       font-size: 25px;
+
       font-weight: 700;
     }
 
     .success-text {
       margin-top: 12px;
+
       color: #71665d;
+
       line-height: 1.85;
     }
 
     .footer {
       margin-top: 22px;
+
       text-align: center;
+
       color: #8c7768;
+
       font-size: 14px;
     }
 
 
     /* ==================================================
        MOBILE
-       唯一一套手機版 CSS
+       只有這一套手機版 CSS
     ================================================== */
 
     @media screen and (max-width: 700px) {
@@ -666,17 +680,15 @@
       .hero {
         position: relative;
 
-        min-height: 220px;
+        min-height: 215px;
 
         padding:
           16px
-          10px
+          8px
           12px
-          10px;
+          8px;
 
         overflow: hidden;
-
-        isolation: isolate;
       }
 
 
@@ -696,6 +708,7 @@
 
       .brand-mark {
         width: 26px;
+
         height: 26px;
       }
 
@@ -732,6 +745,7 @@
 
       .cancel-icon {
         width: 38px;
+
         height: 38px;
 
         min-width: 38px;
@@ -741,6 +755,7 @@
 
       .cancel-icon svg {
         width: 24px;
+
         height: 24px;
       }
 
@@ -761,7 +776,7 @@
       }
 
 
-      /* 副標題 */
+      /* 副標 */
 
       .subtitle {
         position: relative;
@@ -789,7 +804,7 @@
       .character-area {
         position: absolute;
 
-        top: 16px;
+        top: 12px;
 
         right: -25px;
 
@@ -816,9 +831,6 @@
         opacity: 1;
       }
 
-
-      /* 人物左邊只淡一點 */
-
       .character-area::before {
         content: "";
 
@@ -834,18 +846,15 @@
 
             #fbf8f3 0%,
 
-            rgba(251,248,243,.55) 7%,
+            rgba(251,248,243,.48) 6%,
 
-            rgba(251,248,243,.16) 17%,
+            rgba(251,248,243,.12) 15%,
 
-            rgba(251,248,243,.02) 27%,
+            rgba(251,248,243,.02) 24%,
 
-            rgba(251,248,243,0) 35%
+            rgba(251,248,243,0) 32%
           );
       }
-
-
-      /* 人物底部輕微融合 */
 
       .character-area::after {
         content: "";
@@ -860,16 +869,16 @@
           linear-gradient(
             180deg,
 
-            rgba(251,248,243,0) 84%,
+            rgba(251,248,243,0) 86%,
 
-            rgba(251,248,243,.06) 92%,
+            rgba(251,248,243,.05) 94%,
 
-            rgba(251,248,243,.18) 100%
+            rgba(251,248,243,.16) 100%
           );
       }
 
 
-      /* 提示框 */
+      /* NOTICE */
 
       .notice {
         margin-top: 4px;
@@ -891,11 +900,12 @@
 
       .notice-icon {
         width: 20px;
+
         height: 20px;
       }
 
 
-      /* 表單 */
+      /* FORM */
 
       .card {
         margin-top: 17px;
@@ -924,9 +934,9 @@
       }
 
       .label {
-        font-size: 16px;
-
         margin-bottom: 9px;
+
+        font-size: 16px;
       }
 
       input,
@@ -943,9 +953,6 @@
         border-radius: 13px;
       }
 
-
-      /* 日期與時段手機上下排列 */
-
       .time-grid {
         display: grid;
 
@@ -955,7 +962,6 @@
         gap: 10px;
       }
 
-
       .reason-item {
         min-height: 54px;
 
@@ -963,7 +969,6 @@
           13px
           14px;
       }
-
 
       button {
         min-height: 54px;
@@ -977,19 +982,17 @@
 
 </head>
 
+
 <body>
+
 
 <div class="container">
 
 
-  <!-- ============================
-       HERO
-  ============================ -->
+  <!-- HERO -->
 
   <section class="hero">
 
-
-    <!-- 瑞恩中醫 -->
 
     <div class="brand">
 
@@ -1047,6 +1050,7 @@
 
       </div>
 
+
       <span class="brand-name">
         瑞恩中醫
       </span>
@@ -1054,9 +1058,8 @@
     </div>
 
 
-    <!-- 標題 -->
-
     <div class="title-row">
+
 
       <div class="cancel-icon">
 
@@ -1146,8 +1149,6 @@
     </div>
 
 
-    <!-- 人物 -->
-
     <div class="character-area">
 
       <div class="character-image"></div>
@@ -1157,9 +1158,7 @@
   </section>
 
 
-  <!-- ============================
-       NOTICE
-  ============================ -->
+  <!-- NOTICE -->
 
   <div class="notice">
 
@@ -1209,14 +1208,13 @@
   </div>
 
 
-  <!-- ============================
-       FORM
-  ============================ -->
+  <!-- FORM -->
 
   <div
     class="card"
     id="mainCard"
   >
+
 
     <div id="status">
 
@@ -1227,8 +1225,6 @@
 
     <div id="medicineData">
 
-
-      <!-- 姓名 -->
 
       <div class="field">
 
@@ -1251,8 +1247,6 @@
 
       </div>
 
-
-      <!-- 拿藥天數 -->
 
       <div class="field">
 
@@ -1311,8 +1305,6 @@
       </div>
 
 
-      <!-- 取藥時間 -->
-
       <div class="field">
 
         <label class="label">
@@ -1358,8 +1350,6 @@
 
       </div>
 
-
-      <!-- 取消原因 -->
 
       <div class="field">
 
@@ -1462,9 +1452,7 @@
   </div>
 
 
-  <!-- ============================
-       SUCCESS
-  ============================ -->
+  <!-- SUCCESS -->
 
   <div
     class="card"
@@ -1475,11 +1463,13 @@
       ✅
     </div>
 
+
     <div class="success-title">
 
       已完成取消
 
     </div>
+
 
     <div class="success-text">
 
@@ -1503,12 +1493,14 @@
 
 <script>
 
+
 /************************************************
  * 設定
  ************************************************/
 
 const LIFF_ID =
   "2011216294-KZGH20MJ";
+
 
 const GAS_URL =
   "https://script.google.com/macros/s/AKfycby1MuKhtiGBlgsm20eavpZtn4fNryc6Hs8pRhE1PZ2Kr6cQ3DM3FnOhNKYPgJ0MYpIbbw/exec";
@@ -2381,5 +2373,7 @@ async function cancelMedicine() {
 
 </script>
 
+
 </body>
+
 </html>
