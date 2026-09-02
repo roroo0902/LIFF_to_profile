@@ -11,7 +11,7 @@
 
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-  <title>取消拿藥申請</title>
+  <title>取消拿藥申請｜瑞恩中醫</title>
 
   <style>
 
@@ -39,246 +39,423 @@
     body {
       min-height: 100vh;
 
-      background: #f7f3ee;
+      background:
+        linear-gradient(
+          180deg,
+          #fbf8f3 0%,
+          #f6f0e8 100%
+        );
 
       padding:
-        24px
+        22px
         16px
         50px;
-
-      position: relative;
-
-      overflow-x: hidden;
     }
 
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-    /****************************************
-     * 背景人物
-     * 比上一版放大
-     ****************************************/
+    /* ============================
+       HERO
+    ============================ */
 
-    body::before {
+    .hero {
+      position: relative;
 
-      content: "";
+      min-height: 320px;
 
-      position: fixed;
+      padding:
+        28px
+        400px
+        20px
+        32px;
+
+      overflow: hidden;
+    }
+
+    /* ============================
+       瑞恩中醫品牌
+    ============================ */
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+
+      padding-bottom: 9px;
+
+      border-bottom:
+        1px solid
+        #dec8ae;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-mark svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .brand-name {
+      font-size: 23px;
+      font-weight: 700;
+
+      letter-spacing: 2px;
+
+      color: #6a4933;
+    }
+
+    /* ============================
+       標題
+    ============================ */
+
+    .title-row {
+      display: flex;
+      align-items: center;
+
+      gap: 15px;
+
+      margin-top: 38px;
+    }
+
+    .cancel-icon {
+      width: 62px;
+      height: 62px;
+
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 16px;
+
+      background:
+        rgba(
+          239,
+          224,
+          205,
+          .72
+        );
+
+      border:
+        1px solid
+        rgba(
+          190,
+          154,
+          117,
+          .25
+        );
+
+      box-shadow:
+        0 5px 14px
+        rgba(
+          110,
+          75,
+          45,
+          .06
+        );
+    }
+
+    .cancel-icon svg {
+      width: 39px;
+      height: 39px;
+    }
+
+    h1 {
+      margin: 0;
+
+      color: #5e3e29;
+
+      font-size: 40px;
+
+      line-height: 1.15;
+
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      margin-top: 17px;
+
+      color: #78685b;
+
+      font-size: 17px;
+
+      line-height: 1.8;
+    }
+
+    /* ============================
+       右上角人物
+    ============================ */
+
+    .character-area {
+      position: absolute;
+
+      right: -5px;
+      top: -5px;
+
+      width: 430px;
+      height: 320px;
+
+      pointer-events: none;
+    }
+
+    .character-image {
+      position: absolute;
 
       inset: 0;
 
       background:
         url("https://i.ibb.co/Z1kPkDK9/image.jpg")
-        center 68%
-        / min(460px, 88vw)
-        auto
+        center center
+        / contain
         no-repeat;
-
-      opacity: 0.14;
-
-      pointer-events: none;
-
-      z-index: 0;
     }
 
+    /*
+     * 左邊淡出
+     * 讓圖片自然融入文字區
+     */
+    .character-area::before {
+      content: "";
 
-    .container {
+      position: absolute;
 
-      width: 100%;
+      inset: 0;
 
-      max-width: 560px;
+      z-index: 2;
 
-      margin: 0 auto;
+      background:
+        linear-gradient(
+          90deg,
 
-      position: relative;
+          #fbf8f3 0%,
 
-      z-index: 1;
+          rgba(
+            251,
+            248,
+            243,
+            .94
+          ) 5%,
+
+          rgba(
+            251,
+            248,
+            243,
+            .68
+          ) 17%,
+
+          rgba(
+            251,
+            248,
+            243,
+            .22
+          ) 34%,
+
+          rgba(
+            251,
+            248,
+            243,
+            0
+          ) 52%
+        );
     }
 
+    /*
+     * 下方也稍微淡出
+     */
+    .character-area::after {
+      content: "";
 
-    .header {
+      position: absolute;
 
-      text-align: center;
+      inset: 0;
 
-      margin-bottom: 18px;
+      z-index: 3;
+
+      background:
+        linear-gradient(
+          180deg,
+
+          rgba(
+            251,
+            248,
+            243,
+            0
+          ) 60%,
+
+          rgba(
+            251,
+            248,
+            243,
+            .18
+          ) 78%,
+
+          #fbf8f3 100%
+        );
     }
 
-
-    .header-icon {
-
-      font-size: 42px;
-
-      margin-bottom: 6px;
-    }
-
-
-    h1 {
-
-      margin: 0;
-
-      font-size: 28px;
-
-      color: #674b34;
-    }
-
-
-    .subtitle {
-
-      margin-top: 8px;
-
-      font-size: 15px;
-
-      color: #7c6d61;
-
-      line-height: 1.7;
-    }
-
+    /* ============================
+       NOTICE
+    ============================ */
 
     .notice {
-
-      margin-top: 14px;
+      margin-top: 4px;
 
       padding:
-        14px
-        15px;
+        16px
+        20px;
 
-      border-radius: 14px;
+      border-radius: 17px;
 
       background: #f8efe5;
 
       border:
         1px solid
-        #eadaca;
+        #ead5bf;
 
-      color: #865f43;
+      color: #805b42;
 
-      font-size: 14px;
+      font-size: 15px;
 
-      line-height: 1.75;
-
-      text-align: left;
+      line-height: 1.8;
     }
 
+    .notice-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .notice-icon {
+      width: 24px;
+      height: 24px;
+
+      flex-shrink: 0;
+
+      margin-top: 1px;
+    }
+
+    /* ============================
+       FORM CARD
+    ============================ */
 
     .card {
+      margin-top: 26px;
+
+      padding: 30px;
+
+      border-radius: 27px;
 
       background:
         rgba(
           255,
-          252,
-          247,
-          0.96
+          253,
+          249,
+          .98
         );
-
-      border-radius: 22px;
-
-      padding: 24px;
 
       border:
         1px solid
         rgba(
-          175,
-          145,
-          110,
-          0.18
+          177,
+          146,
+          113,
+          .14
         );
 
       box-shadow:
-        0 8px 30px
+        0 11px 38px
         rgba(
-          80,
-          60,
-          40,
-          0.13
+          81,
+          61,
+          42,
+          .11
         );
-
-      backdrop-filter:
-        blur(5px);
     }
 
-
     #status {
+      margin-bottom: 27px;
 
-      text-align: center;
+      padding: 16px;
 
-      margin-bottom: 20px;
-
-      padding: 13px;
-
-      border-radius: 12px;
+      border-radius: 15px;
 
       background: #f7efe5;
 
       color: #705c49;
 
-      font-size: 14px;
+      text-align: center;
+
+      font-size: 15px;
 
       line-height: 1.7;
     }
-
 
     #medicineData {
       display: none;
     }
 
-
     .field {
-      margin-bottom: 23px;
+      margin-bottom: 25px;
     }
-
 
     .label {
-
       display: block;
 
-      margin-bottom: 9px;
-
-      font-size: 15px;
-
-      font-weight: 700;
+      margin-bottom: 10px;
 
       color: #5e4938;
-    }
 
+      font-size: 16px;
+
+      font-weight: 700;
+    }
 
     .required {
-
-      color: #c9564f;
-
+      color: #cb5149;
       margin-left: 3px;
     }
-
 
     input,
     select,
     textarea {
-
       width: 100%;
 
       padding:
-        13px
-        14px;
+        14px
+        15px;
 
       border:
         1px solid
-        #d8c8b9;
+        #d9c7b6;
 
-      border-radius: 12px;
+      border-radius: 14px;
 
-      background: white;
-
-      font-size: 16px;
+      background: #fff;
 
       color: #40372f;
 
+      font-size: 16px;
+
       outline: none;
 
-      transition: 0.2s;
+      transition: .2s;
     }
-
 
     input:focus,
     select:focus,
     textarea:focus {
-
       border-color: #a98560;
 
       box-shadow:
@@ -287,259 +464,296 @@
           169,
           133,
           96,
-          0.13
+          .13
         );
     }
 
-
     textarea {
-
-      min-height: 92px;
-
+      min-height: 100px;
       resize: vertical;
     }
 
-
     .time-grid {
-
       display: grid;
 
       grid-template-columns:
         1fr
-        0.75fr;
+        .75fr;
 
-      gap: 10px;
+      gap: 12px;
     }
 
-
-    #otherDaysBox {
-
+    #otherDaysBox,
+    #otherReasonBox {
       display: none;
-
-      margin-top: 10px;
+      margin-top: 12px;
     }
 
+    /* ============================
+       Reason
+    ============================ */
 
     .reason-group {
-
       display: flex;
-
       flex-direction: column;
 
-      gap: 10px;
+      gap: 11px;
     }
 
-
     .reason-item {
-
       display: flex;
-
       align-items: center;
 
-      gap: 10px;
+      gap: 11px;
 
       padding:
-        13px
-        14px;
+        15px
+        16px;
 
       border:
         1px solid
-        #dfd2c6;
+        #ded0c2;
 
-      border-radius: 12px;
+      border-radius: 14px;
 
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          0.86
-        );
+      background: #fff;
 
       cursor: pointer;
 
-      transition: 0.2s;
+      transition: .2s;
     }
-
 
     .reason-item:hover {
-
-      border-color: #b99a7c;
-
       background: #fffaf5;
+      border-color: #ba997a;
     }
 
-
     .reason-item input {
-
       width: auto;
 
       margin: 0;
 
-      transform:
-        scale(1.15);
+      transform: scale(1.15);
     }
-
-
-    #otherReasonBox {
-
-      display: none;
-
-      margin-top: 12px;
-    }
-
 
     .small-note {
-
       margin-top: 8px;
 
       color: #9a8878;
 
       font-size: 13px;
-
-      line-height: 1.6;
     }
 
+    /* ============================
+       WARNING
+    ============================ */
 
     .warning {
+      margin-top: 10px;
 
-      margin-top: 8px;
-
-      padding: 13px;
-
-      border-radius: 12px;
-
-      background: #fff4ef;
-
-      color: #9b5145;
-
-      font-size: 14px;
-
-      line-height: 1.7;
-    }
-
-
-    button {
-
-      width: 100%;
-
-      margin-top: 24px;
-
-      padding: 15px;
-
-      border: none;
+      padding:
+        14px
+        15px;
 
       border-radius: 14px;
 
-      background: #a35e4d;
+      background: #fff1ec;
 
-      color: white;
+      color: #985044;
 
-      font-size: 17px;
+      font-size: 14px;
+
+      line-height: 1.75;
+    }
+
+    /* ============================
+       BUTTON
+    ============================ */
+
+    button {
+      width: 100%;
+
+      margin-top: 25px;
+
+      padding: 16px;
+
+      border: none;
+
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #c86149,
+          #b7533f
+        );
+
+      color: #fff;
+
+      font-size: 18px;
 
       font-weight: 700;
 
       cursor: pointer;
 
-      transition: 0.2s;
-    }
+      box-shadow:
+        0 6px 16px
+        rgba(
+          170,
+          76,
+          53,
+          .16
+        );
 
+      transition: .2s;
+    }
 
     button:hover {
-
-      background: #8f4f40;
+      transform: translateY(-1px);
     }
 
-
     button:disabled {
+      opacity: .55;
 
-      opacity: 0.58;
+      transform: none;
 
       cursor: not-allowed;
     }
 
+    /* ============================
+       Success
+    ============================ */
 
     #successPage {
-
       display: none;
 
       text-align: center;
     }
 
-
     .success-icon {
+      font-size: 65px;
 
-      font-size: 64px;
-
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
-
 
     .success-title {
-
-      font-size: 24px;
-
-      font-weight: 700;
-
       color: #72513b;
 
-      margin-bottom: 10px;
+      font-size: 25px;
+
+      font-weight: 700;
     }
 
-
     .success-text {
-
-      font-size: 15px;
+      margin-top: 12px;
 
       color: #71665d;
 
-      line-height: 1.8;
+      line-height: 1.85;
     }
 
+    .footer {
+      margin-top: 22px;
 
-    @media(max-width: 480px) {
+      text-align: center;
+
+      color: #8c7768;
+
+      font-size: 14px;
+    }
+
+    /* ============================
+       MOBILE
+    ============================ */
+
+    @media(max-width: 700px) {
 
       body {
-
         padding:
-          18px
-          12px
+          14px
+          10px
           40px;
       }
 
+      .hero {
+        min-height: 225px;
 
-      body::before {
-
-        background-size:
-          min(
-            390px,
-            90vw
-          )
-          auto;
-
-        background-position:
-          center 72%;
-
-        opacity: 0.12;
+        padding:
+          15px
+          155px
+          10px
+          9px;
       }
 
+      .brand {
+        gap: 7px;
+      }
+
+      .brand-mark {
+        width: 29px;
+        height: 29px;
+      }
+
+      .brand-name {
+        font-size: 18px;
+      }
+
+      .title-row {
+        margin-top: 26px;
+        gap: 8px;
+      }
+
+      .cancel-icon {
+        width: 43px;
+        height: 43px;
+
+        border-radius: 12px;
+      }
+
+      .cancel-icon svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+
+      .subtitle {
+        margin-top: 10px;
+
+        font-size: 13px;
+
+        line-height: 1.65;
+      }
+
+      .character-area {
+        right: -13px;
+
+        width: 190px;
+
+        height: 220px;
+      }
+
+      .notice {
+        margin-top: 2px;
+
+        padding:
+          14px
+          15px;
+
+        font-size: 14px;
+      }
 
       .card {
+        margin-top: 18px;
 
         padding:
           20px
           17px;
       }
 
-
-      h1 {
-
-        font-size: 25px;
-      }
-
-
       .time-grid {
-
         grid-template-columns:
           1fr;
       }
@@ -547,27 +761,171 @@
     }
 
   </style>
-
 </head>
 
-
 <body>
-
 
 <div class="container">
 
 
-  <!-- 標題 -->
+  <!-- ============================
+       HERO
+  ============================ -->
 
-  <div class="header">
+  <section class="hero">
 
-    <div class="header-icon">
-      🌿
+    <!-- 品牌 -->
+
+    <div class="brand">
+
+      <div class="brand-mark">
+
+        <!-- 中藥袋 SVG -->
+        <svg
+          viewBox="0 0 64 64"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+
+          <path
+            d="M22 12
+               C23 7 28 5 32 5
+               C36 5 41 7 42 12
+               L38 17
+               H26
+               Z"
+            fill="#d9b784"
+            stroke="#80593c"
+            stroke-width="2"
+          />
+
+          <path
+            d="M24 17
+               H40
+               C47 25 50 35 48 47
+               C47 55 42 59 32 59
+               C22 59 17 55 16 47
+               C14 35 17 25 24 17Z"
+            fill="#ecd6af"
+            stroke="#80593c"
+            stroke-width="2"
+          />
+
+          <path
+            d="M20 18
+               C26 21 38 21 44 18"
+            fill="none"
+            stroke="#a76842"
+            stroke-width="2"
+          />
+
+          <text
+            x="32"
+            y="43"
+            text-anchor="middle"
+            font-size="15"
+            font-weight="700"
+            fill="#6f4a32"
+          >
+            藥
+          </text>
+
+        </svg>
+
+      </div>
+
+
+      <span class="brand-name">
+        瑞恩中醫
+      </span>
+
     </div>
 
-    <h1>
-      取消拿藥申請
-    </h1>
+
+    <!-- 標題 -->
+
+    <div class="title-row">
+
+      <div class="cancel-icon">
+
+        <!-- 取消紀錄板 SVG -->
+        <svg
+          viewBox="0 0 64 64"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+
+          <rect
+            x="14"
+            y="10"
+            width="36"
+            height="46"
+            rx="5"
+            fill="#f5e6d4"
+            stroke="#79543a"
+            stroke-width="3"
+          />
+
+          <rect
+            x="23"
+            y="6"
+            width="18"
+            height="8"
+            rx="3"
+            fill="#d6b28a"
+            stroke="#79543a"
+            stroke-width="2"
+          />
+
+          <line
+            x1="21"
+            y1="23"
+            x2="40"
+            y2="23"
+            stroke="#b59576"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <line
+            x1="21"
+            y1="31"
+            x2="36"
+            y2="31"
+            stroke="#b59576"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <line
+            x1="36"
+            y1="39"
+            x2="45"
+            y2="48"
+            stroke="#c85f4d"
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+
+          <line
+            x1="45"
+            y1="39"
+            x2="36"
+            y2="48"
+            stroke="#c85f4d"
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+
+        </svg>
+
+      </div>
+
+
+      <h1>
+        取消拿藥申請
+      </h1>
+
+    </div>
+
 
     <div class="subtitle">
 
@@ -576,32 +934,85 @@
     </div>
 
 
-    <div class="notice">
+    <!-- 人物 -->
 
-      本表單僅提供取消拿藥，
-      若需要修改拿藥時間或是內容，
-      請再重新填寫照拿藥表單
+    <div class="character-area">
+
+      <div class="character-image"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================
+       NOTICE
+  ============================ -->
+
+  <div class="notice">
+
+    <div class="notice-row">
+
+      <!-- Bell SVG -->
+
+      <svg
+        class="notice-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+
+        <path
+          d="M12 3
+             C8.7 3 7 5.5 7 8.5
+             V12
+             L5 16
+             H19
+             L17 12
+             V8.5
+             C17 5.5 15.3 3 12 3Z"
+          fill="#e9c99d"
+          stroke="#845f44"
+          stroke-width="1.5"
+        />
+
+        <path
+          d="M10 19
+             C10.5 20.5 13.5 20.5 14 19"
+          fill="none"
+          stroke="#845f44"
+          stroke-width="1.5"
+        />
+
+      </svg>
+
+
+      <span>
+
+        本表單僅提供取消拿藥，
+        若需要修改拿藥時間或是內容，
+        請再重新填寫照拿藥表單。
+
+      </span>
 
     </div>
 
   </div>
 
 
-
-  <!-- 主卡片 -->
+  <!-- ============================
+       MAIN FORM
+  ============================ -->
 
   <div
     class="card"
     id="mainCard"
   >
 
-
     <div id="status">
 
       正在連接 LINE 並查詢您的拿藥資料...
 
     </div>
-
 
 
     <div id="medicineData">
@@ -623,16 +1034,15 @@
 
 
         <input
-          type="text"
           id="name"
+          type="text"
           placeholder="請輸入姓名"
         >
 
       </div>
 
 
-
-      <!-- 原本拿藥天數 -->
+      <!-- 天數 -->
 
       <div class="field">
 
@@ -679,11 +1089,10 @@
         <div id="otherDaysBox">
 
           <input
-            type="number"
             id="otherDays"
+            type="number"
             min="1"
             max="99"
-            inputmode="numeric"
             placeholder="請輸入其他拿藥天數"
           >
 
@@ -692,8 +1101,7 @@
       </div>
 
 
-
-      <!-- 原本預計取藥時間 -->
+      <!-- 時間 -->
 
       <div class="field">
 
@@ -709,7 +1117,6 @@
 
 
         <div class="time-grid">
-
 
           <input
             type="date"
@@ -737,14 +1144,12 @@
 
           </select>
 
-
         </div>
 
       </div>
 
 
-
-      <!-- 取消原因 -->
+      <!-- 原因 -->
 
       <div class="field">
 
@@ -771,12 +1176,9 @@
               onchange="reasonChanged()"
             >
 
-            <span>
-              改其他時間取藥
-            </span>
+            改其他時間取藥
 
           </label>
-
 
 
           <label class="reason-item">
@@ -788,12 +1190,9 @@
               onchange="reasonChanged()"
             >
 
-            <span>
-              藥物效果不佳
-            </span>
+            藥物效果不佳
 
           </label>
-
 
 
           <label class="reason-item">
@@ -805,15 +1204,11 @@
               onchange="reasonChanged()"
             >
 
-            <span>
-              其他(可不填寫)
-            </span>
+            其他(可不填寫)
 
           </label>
 
-
         </div>
-
 
 
         <div id="otherReasonBox">
@@ -822,6 +1217,7 @@
             id="otherReason"
             placeholder="若有其他原因或補充內容，可在此填寫"
           ></textarea>
+
 
           <div class="small-note">
 
@@ -834,14 +1230,12 @@
       </div>
 
 
-
       <div class="warning">
 
-        ⚠️ 送出後會建立取消拿藥紀錄。
-        若仍需要拿藥，請重新填寫照拿藥表單。
+        ⚠️ 送出後會建立取消拿藥紀錄，
+        請確認拿藥天數、取藥時間與取消原因是否正確。
 
       </div>
-
 
 
       <button
@@ -853,14 +1247,14 @@
 
       </button>
 
-
     </div>
 
   </div>
 
 
-
-  <!-- 成功 -->
+  <!-- ============================
+       SUCCESS
+  ============================ -->
 
   <div
     class="card"
@@ -871,11 +1265,13 @@
       ✅
     </div>
 
+
     <div class="success-title">
 
       已完成取消
 
     </div>
+
 
     <div class="success-text">
 
@@ -888,28 +1284,30 @@
   </div>
 
 
-</div>
+  <div class="footer">
 
+    瑞恩中醫｜關心您的健康
+
+  </div>
+
+</div>
 
 
 <script>
 
-
 /************************************************
- * 請改成自己的 LIFF / GAS
+ * 設定
  ************************************************/
 
 const LIFF_ID =
   "2011216294-KZGH20MJ";
 
-
 const GAS_URL =
-  "https://script.google.com/macros/s/AKfycbwecJQxg0mQcVSi2Q8WxFR1V7IGtkfHWm9_ljkoa897NGdnKQvOjNjDaljdsbf8fjsjkw/exec";
-
+  "https://script.google.com/macros/s/AKfycby1MuKhtiGBlgsm20eavpZtn4fNryc6Hs8pRhE1PZ2Kr6cQ3DM3FnOhNKYPgJ0MYpIbbw/exec";
 
 
 /************************************************
- * 使用者資料
+ * 狀態
  ************************************************/
 
 let currentUserID =
@@ -921,17 +1319,8 @@ let currentUserName =
 let currentRowNumber =
   null;
 
-
-/*
- * true：
- * 原本 Google Sheet 有找到紀錄
- *
- * false：
- * 沒找到，由病患自行輸入
- */
 let foundOriginalRecord =
   false;
-
 
 
 /************************************************
@@ -944,7 +1333,6 @@ window.addEventListener(
 );
 
 
-
 /************************************************
  * LIFF
  ************************************************/
@@ -954,10 +1342,7 @@ async function initializePage() {
   try {
 
     await liff.init({
-
-      liffId:
-        LIFF_ID
-
+      liffId: LIFF_ID
     });
 
 
@@ -995,14 +1380,6 @@ async function initializePage() {
     }
 
 
-    document
-      .getElementById(
-        "status"
-      )
-      .innerText =
-        "正在查詢您的拿藥資料...";
-
-
     await loadMedicineData();
 
 
@@ -1013,11 +1390,6 @@ async function initializePage() {
     );
 
 
-    /*
-     * 即使 LIFF 或查詢失敗，
-     * 還是讓病患自行輸入資料
-     */
-
     showManualMode(
       "目前無法自動帶入資料，請自行填寫取消資料"
     );
@@ -1027,9 +1399,8 @@ async function initializePage() {
 }
 
 
-
 /************************************************
- * 查詢原拿藥資料
+ * 查詢
  ************************************************/
 
 async function loadMedicineData() {
@@ -1038,17 +1409,12 @@ async function loadMedicineData() {
 
     const url =
       GAS_URL +
-
       "?action=getLatest" +
-
       "&userID=" +
-
       encodeURIComponent(
         currentUserID
       ) +
-
       "&t=" +
-
       Date.now();
 
 
@@ -1082,9 +1448,6 @@ async function loadMedicineData() {
       await response.json();
 
 
-    /*
-     * 找不到 → 改為自行填寫
-     */
     if (
       !result.found
     ) {
@@ -1098,9 +1461,6 @@ async function loadMedicineData() {
     }
 
 
-    /*
-     * 找到
-     */
     foundOriginalRecord =
       true;
 
@@ -1117,10 +1477,6 @@ async function loadMedicineData() {
         "已找到您的拿藥申請，可確認或修改以下資料";
 
 
-    /********************************
-     * 姓名
-     ********************************/
-
     document
       .getElementById(
         "name"
@@ -1129,18 +1485,10 @@ async function loadMedicineData() {
         result.name || "";
 
 
-    /********************************
-     * 拿藥天數
-     ********************************/
-
     setMedicineDays(
       result.medicineDays
     );
 
-
-    /********************************
-     * 取藥時間
-     ********************************/
 
     setPickupTime(
       result.pickupTime
@@ -1171,9 +1519,8 @@ async function loadMedicineData() {
 }
 
 
-
 /************************************************
- * 沒找到紀錄
+ * 手動模式
  ************************************************/
 
 function showManualMode(
@@ -1196,11 +1543,6 @@ function showManualMode(
       message;
 
 
-  /*
-   * LINE名稱可以先帶進姓名
-   *
-   * 使用者仍可自行修改
-   */
   if (
     currentUserName
   ) {
@@ -1225,9 +1567,8 @@ function showManualMode(
 }
 
 
-
 /************************************************
- * 自動帶入天數
+ * 天數
  ************************************************/
 
 function setMedicineDays(
@@ -1275,14 +1616,6 @@ function setMedicineDays(
     select.value =
       days + "天";
 
-
-    document
-      .getElementById(
-        "otherDaysBox"
-      )
-      .style.display =
-        "none";
-
   } else {
 
     select.value =
@@ -1308,11 +1641,6 @@ function setMedicineDays(
 
 }
 
-
-
-/************************************************
- * 天數選單
- ************************************************/
 
 function medicineDaysChanged() {
 
@@ -1355,11 +1683,6 @@ function medicineDaysChanged() {
 
 }
 
-
-
-/************************************************
- * 取得拿藥天數
- ************************************************/
 
 function getMedicineDays() {
 
@@ -1416,9 +1739,8 @@ function getMedicineDays() {
 }
 
 
-
 /************************************************
- * 自動帶入取藥時間
+ * 取藥時間
  ************************************************/
 
 function setPickupTime(
@@ -1490,6 +1812,7 @@ function setPickupTime(
     period.value =
       "上午";
 
+
   } else if (
     text.includes(
       "下午"
@@ -1498,6 +1821,7 @@ function setPickupTime(
 
     period.value =
       "下午";
+
 
   } else if (
     text.includes(
@@ -1511,7 +1835,6 @@ function setPickupTime(
   }
 
 }
-
 
 
 /************************************************
@@ -1559,11 +1882,6 @@ function reasonChanged() {
 }
 
 
-
-/************************************************
- * 取得取消原因
- ************************************************/
-
 function getCancelReason() {
 
   const selected =
@@ -1586,7 +1904,7 @@ function getCancelReason() {
       "其他"
   ) {
 
-    const text =
+    const other =
       document
         .getElementById(
           "otherReason"
@@ -1595,19 +1913,9 @@ function getCancelReason() {
         .trim();
 
 
-    if (
-      text
-    ) {
-
-      return (
-        "其他：" +
-        text
-      );
-
-    }
-
-
-    return "其他";
+    return other
+      ? "其他：" + other
+      : "其他";
 
   }
 
@@ -1617,16 +1925,11 @@ function getCancelReason() {
 }
 
 
-
 /************************************************
- * 送出取消
+ * 送出
  ************************************************/
 
 async function cancelMedicine() {
-
-  /********************************
-   * 姓名
-   ********************************/
 
   const name =
     document
@@ -1635,6 +1938,30 @@ async function cancelMedicine() {
       )
       .value
       .trim();
+
+
+  const medicineDays =
+    getMedicineDays();
+
+
+  const pickupDate =
+    document
+      .getElementById(
+        "pickupDate"
+      )
+      .value;
+
+
+  const pickupPeriod =
+    document
+      .getElementById(
+        "pickupPeriod"
+      )
+      .value;
+
+
+  const cancelReason =
+    getCancelReason();
 
 
   if (
@@ -1650,14 +1977,6 @@ async function cancelMedicine() {
   }
 
 
-  /********************************
-   * 天數
-   ********************************/
-
-  const medicineDays =
-    getMedicineDays();
-
-
   if (
     !medicineDays
   ) {
@@ -1669,18 +1988,6 @@ async function cancelMedicine() {
     return;
 
   }
-
-
-  /********************************
-   * 日期
-   ********************************/
-
-  const pickupDate =
-    document
-      .getElementById(
-        "pickupDate"
-      )
-      .value;
 
 
   if (
@@ -1696,18 +2003,6 @@ async function cancelMedicine() {
   }
 
 
-  /********************************
-   * 時段
-   ********************************/
-
-  const pickupPeriod =
-    document
-      .getElementById(
-        "pickupPeriod"
-      )
-      .value;
-
-
   if (
     !pickupPeriod
   ) {
@@ -1719,20 +2014,6 @@ async function cancelMedicine() {
     return;
 
   }
-
-
-  const pickupTime =
-    pickupDate +
-    " " +
-    pickupPeriod;
-
-
-  /********************************
-   * 原因
-   ********************************/
-
-  const cancelReason =
-    getCancelReason();
 
 
   if (
@@ -1748,18 +2029,17 @@ async function cancelMedicine() {
   }
 
 
-  /********************************
-   * Payload
-   ********************************/
+  const pickupTime =
+    pickupDate +
+    " " +
+    pickupPeriod;
+
 
   const payload = {
 
     action:
       "cancelMedicine",
 
-    /*
-     * 有找到原始資料才會有 rowNumber
-     */
     rowNumber:
       currentRowNumber,
 
@@ -1825,17 +2105,6 @@ async function cancelMedicine() {
 
         }
       );
-
-
-    if (
-      !response.ok
-    ) {
-
-      throw new Error(
-        "GAS 回應異常"
-      );
-
-    }
 
 
     const result =
@@ -1904,7 +2173,5 @@ async function cancelMedicine() {
 
 </script>
 
-
 </body>
-
 </html>
