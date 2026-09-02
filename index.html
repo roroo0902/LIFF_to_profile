@@ -65,15 +65,17 @@
     .hero {
       position: relative;
 
-      min-height: 320px;
+      min-height: 310px;
 
       padding:
         28px
-        400px
-        20px
+        30px
+        25px
         32px;
 
       overflow: hidden;
+
+      isolation: isolate;
     }
 
     /* ============================
@@ -90,6 +92,9 @@
       border-bottom:
         1px solid
         #dec8ae;
+
+      position: relative;
+      z-index: 5;
     }
 
     .brand-mark {
@@ -126,6 +131,9 @@
       gap: 15px;
 
       margin-top: 38px;
+
+      position: relative;
+      z-index: 5;
     }
 
     .cancel-icon {
@@ -192,20 +200,25 @@
       font-size: 17px;
 
       line-height: 1.8;
+
+      position: relative;
+      z-index: 5;
     }
 
     /* ============================
-       右上角人物
+       Q版人物背景
     ============================ */
 
     .character-area {
       position: absolute;
 
-      right: -5px;
-      top: -5px;
+      top: -15px;
+      right: -20px;
 
-      width: 430px;
-      height: 320px;
+      width: 480px;
+      height: 340px;
+
+      z-index: -1;
 
       pointer-events: none;
     }
@@ -217,16 +230,41 @@
 
       background:
         url("https://i.ibb.co/Z1kPkDK9/image.jpg")
-        center center
+        right center
         / contain
         no-repeat;
+
+      opacity: 0.28;
     }
 
-    /*
-     * 左邊淡出
-     * 讓圖片自然融入文字區
-     */
+    /* 左側淡出 */
     .character-area::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 1;
+
+      background:
+        linear-gradient(
+          90deg,
+
+          #fbf8f3 0%,
+
+          rgba(251,248,243,.93) 15%,
+
+          rgba(251,248,243,.65) 35%,
+
+          rgba(251,248,243,.18) 60%,
+
+          rgba(251,248,243,0) 82%
+        );
+    }
+
+    /* 下方淡出 */
+    .character-area::after {
       content: "";
 
       position: absolute;
@@ -237,69 +275,11 @@
 
       background:
         linear-gradient(
-          90deg,
-
-          #fbf8f3 0%,
-
-          rgba(
-            251,
-            248,
-            243,
-            .94
-          ) 5%,
-
-          rgba(
-            251,
-            248,
-            243,
-            .68
-          ) 17%,
-
-          rgba(
-            251,
-            248,
-            243,
-            .22
-          ) 34%,
-
-          rgba(
-            251,
-            248,
-            243,
-            0
-          ) 52%
-        );
-    }
-
-    /*
-     * 下方也稍微淡出
-     */
-    .character-area::after {
-      content: "";
-
-      position: absolute;
-
-      inset: 0;
-
-      z-index: 3;
-
-      background:
-        linear-gradient(
           180deg,
 
-          rgba(
-            251,
-            248,
-            243,
-            0
-          ) 60%,
+          rgba(251,248,243,0) 55%,
 
-          rgba(
-            251,
-            248,
-            243,
-            .18
-          ) 78%,
+          rgba(251,248,243,.15) 73%,
 
           #fbf8f3 100%
         );
@@ -614,9 +594,7 @@
 
     button:disabled {
       opacity: .55;
-
       transform: none;
-
       cursor: not-allowed;
     }
 
@@ -626,39 +604,30 @@
 
     #successPage {
       display: none;
-
       text-align: center;
     }
 
     .success-icon {
       font-size: 65px;
-
       margin-bottom: 12px;
     }
 
     .success-title {
       color: #72513b;
-
       font-size: 25px;
-
       font-weight: 700;
     }
 
     .success-text {
       margin-top: 12px;
-
       color: #71665d;
-
       line-height: 1.85;
     }
 
     .footer {
       margin-top: 22px;
-
       text-align: center;
-
       color: #8c7768;
-
       font-size: 14px;
     }
 
@@ -676,13 +645,13 @@
       }
 
       .hero {
-        min-height: 225px;
+        min-height: 235px;
 
         padding:
+          16px
+          14px
           15px
-          155px
-          10px
-          9px;
+          12px;
       }
 
       .brand {
@@ -699,14 +668,13 @@
       }
 
       .title-row {
-        margin-top: 26px;
+        margin-top: 28px;
         gap: 8px;
       }
 
       .cancel-icon {
         width: 43px;
         height: 43px;
-
         border-radius: 12px;
       }
 
@@ -716,23 +684,28 @@
       }
 
       h1 {
-        font-size: 27px;
+        font-size: 29px;
+        white-space: nowrap;
       }
 
       .subtitle {
         margin-top: 10px;
+        max-width: 68%;
 
         font-size: 13px;
-
         line-height: 1.65;
       }
 
       .character-area {
-        right: -13px;
+        top: 5px;
+        right: -35px;
 
-        width: 190px;
+        width: 270px;
+        height: 225px;
+      }
 
-        height: 220px;
+      .character-image {
+        opacity: 0.22;
       }
 
       .notice {
@@ -767,20 +740,13 @@
 
 <div class="container">
 
-
-  <!-- ============================
-       HERO
-  ============================ -->
-
+  <!-- HERO -->
   <section class="hero">
-
-    <!-- 品牌 -->
 
     <div class="brand">
 
       <div class="brand-mark">
 
-        <!-- 中藥袋 SVG -->
         <svg
           viewBox="0 0 64 64"
           xmlns="http://www.w3.org/2000/svg"
@@ -833,7 +799,6 @@
 
       </div>
 
-
       <span class="brand-name">
         瑞恩中醫
       </span>
@@ -841,13 +806,10 @@
     </div>
 
 
-    <!-- 標題 -->
-
     <div class="title-row">
 
       <div class="cancel-icon">
 
-        <!-- 取消紀錄板 SVG -->
         <svg
           viewBox="0 0 64 64"
           xmlns="http://www.w3.org/2000/svg"
@@ -919,7 +881,6 @@
 
       </div>
 
-
       <h1>
         取消拿藥申請
       </h1>
@@ -928,32 +889,21 @@
 
 
     <div class="subtitle">
-
       系統會自動查詢您最近一次的拿藥申請
-
     </div>
 
 
-    <!-- 人物 -->
-
     <div class="character-area">
-
       <div class="character-image"></div>
-
     </div>
 
   </section>
 
 
-  <!-- ============================
-       NOTICE
-  ============================ -->
-
+  <!-- NOTICE -->
   <div class="notice">
 
     <div class="notice-row">
-
-      <!-- Bell SVG -->
 
       <svg
         class="notice-icon"
@@ -985,13 +935,10 @@
 
       </svg>
 
-
       <span>
-
         本表單僅提供取消拿藥，
         若需要修改拿藥時間或是內容，
         請再重新填寫照拿藥表單。
-
       </span>
 
     </div>
@@ -999,39 +946,25 @@
   </div>
 
 
-  <!-- ============================
-       MAIN FORM
-  ============================ -->
-
+  <!-- MAIN FORM -->
   <div
     class="card"
     id="mainCard"
   >
 
     <div id="status">
-
       正在連接 LINE 並查詢您的拿藥資料...
-
     </div>
 
 
     <div id="medicineData">
 
-
-      <!-- 姓名 -->
-
       <div class="field">
 
         <label class="label">
-
           姓名
-
-          <span class="required">
-            *
-          </span>
-
+          <span class="required">*</span>
         </label>
-
 
         <input
           id="name"
@@ -1042,20 +975,12 @@
       </div>
 
 
-      <!-- 天數 -->
-
       <div class="field">
 
         <label class="label">
-
           原本拿藥天數
-
-          <span class="required">
-            *
-          </span>
-
+          <span class="required">*</span>
         </label>
-
 
         <select
           id="medicineDays"
@@ -1085,7 +1010,6 @@
 
         </select>
 
-
         <div id="otherDaysBox">
 
           <input
@@ -1101,20 +1025,12 @@
       </div>
 
 
-      <!-- 時間 -->
-
       <div class="field">
 
         <label class="label">
-
           原本預計取藥時間
-
-          <span class="required">
-            *
-          </span>
-
+          <span class="required">*</span>
         </label>
-
 
         <div class="time-grid">
 
@@ -1122,7 +1038,6 @@
             type="date"
             id="pickupDate"
           >
-
 
           <select id="pickupPeriod">
 
@@ -1149,63 +1064,43 @@
       </div>
 
 
-      <!-- 原因 -->
-
       <div class="field">
 
         <label class="label">
-
           取消原因
-
-          <span class="required">
-            *
-          </span>
-
+          <span class="required">*</span>
         </label>
-
 
         <div class="reason-group">
 
-
           <label class="reason-item">
-
             <input
               type="radio"
               name="cancelReason"
               value="改其他時間取藥"
               onchange="reasonChanged()"
             >
-
             改其他時間取藥
-
           </label>
 
-
           <label class="reason-item">
-
             <input
               type="radio"
               name="cancelReason"
               value="藥物效果不佳"
               onchange="reasonChanged()"
             >
-
             藥物效果不佳
-
           </label>
 
-
           <label class="reason-item">
-
             <input
               type="radio"
               name="cancelReason"
               value="其他"
               onchange="reasonChanged()"
             >
-
             其他(可不填寫)
-
           </label>
 
         </div>
@@ -1218,11 +1113,8 @@
             placeholder="若有其他原因或補充內容，可在此填寫"
           ></textarea>
 
-
           <div class="small-note">
-
             此欄位可不填寫
-
           </div>
 
         </div>
@@ -1231,10 +1123,8 @@
 
 
       <div class="warning">
-
         ⚠️ 送出後會建立取消拿藥紀錄，
         請確認拿藥天數、取藥時間與取消原因是否正確。
-
       </div>
 
 
@@ -1242,9 +1132,7 @@
         id="cancelButton"
         onclick="cancelMedicine()"
       >
-
         確認取消
-
       </button>
 
     </div>
@@ -1252,10 +1140,7 @@
   </div>
 
 
-  <!-- ============================
-       SUCCESS
-  ============================ -->
-
+  <!-- SUCCESS -->
   <div
     class="card"
     id="successPage"
@@ -1265,29 +1150,20 @@
       ✅
     </div>
 
-
     <div class="success-title">
-
       已完成取消
-
     </div>
 
-
     <div class="success-text">
-
       您的取消拿藥申請已成功送出。<br>
-
       診所將依照最新資料進行後續處理。
-
     </div>
 
   </div>
 
 
   <div class="footer">
-
     瑞恩中醫｜關心您的健康
-
   </div>
 
 </div>
@@ -2092,10 +1968,8 @@ async function cancelMedicine() {
             "POST",
 
           headers: {
-
             "Content-Type":
               "text/plain;charset=utf-8"
-
           },
 
           body:
