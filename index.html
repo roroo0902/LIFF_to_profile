@@ -209,90 +209,69 @@
     }
 
 
-/* ============================
-   Q版人物背景
-   清晰版
-============================ */
+    /* ============================
+       Q版人物背景
+    ============================ */
 
-.character-area {
-  position: absolute;
+    .character-area {
+      position: absolute;
 
-  top: -8px;
-  right: 18px;
+      top: -8px;
+      right: 18px;
 
-  width: 470px;
-  height: 335px;
+      width: 470px;
+      height: 335px;
 
-  z-index: -1;
+      z-index: -1;
 
-  pointer-events: none;
-}
+      pointer-events: none;
+    }
 
-.character-image {
-  position: absolute;
+    .character-image {
+      position: absolute;
 
-  inset: 0;
+      inset: 0;
 
-  background:
-    url("https://i.ibb.co/Z1kPkDK9/image.jpg")
-    right center
-    / contain
-    no-repeat;
+      background:
+        url("https://i.ibb.co/Z1kPkDK9/image.jpg")
+        right center
+        / contain
+        no-repeat;
 
-  opacity: 1;
-}
-
-
-/* 左側只保留非常輕微的融合 */
-.character-area::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 1;
-
-  background:
-    linear-gradient(
-      90deg,
-
-      #fbf8f3 0%,
-
-      rgba(251,248,243,.55) 7%,
-
-      rgba(251,248,243,.18) 18%,
-
-      rgba(251,248,243,.03) 30%,
-
-      rgba(251,248,243,0) 42%
-    );
-}
+      opacity: 1;
+    }
 
 
-/* 下方柔和淡出 */
-.character-area::after {
-  content: "";
+    /* 左側非常輕微融合 */
 
-  position: absolute;
+    .character-area::before {
+      content: "";
 
-  inset: 0;
+      position: absolute;
 
-  z-index: 2;
+      inset: 0;
 
-  background:
-    linear-gradient(
-      180deg,
+      z-index: 1;
 
-      rgba(251,248,243,0) 78%,
+      background:
+        linear-gradient(
+          90deg,
 
-      rgba(251,248,243,.08) 88%,
+          #fbf8f3 0%,
 
-      rgba(251,248,243,.28) 100%
-    );
-}
+          rgba(251,248,243,.55) 7%,
 
-    /* 下方輕微融合 */
+          rgba(251,248,243,.18) 18%,
+
+          rgba(251,248,243,.03) 30%,
+
+          rgba(251,248,243,0) 42%
+        );
+    }
+
+
+    /* 下方柔和淡出 */
+
     .character-area::after {
       content: "";
 
@@ -306,11 +285,11 @@
         linear-gradient(
           180deg,
 
-          rgba(251,248,243,0) 72%,
+          rgba(251,248,243,0) 78%,
 
-          rgba(251,248,243,.10) 86%,
+          rgba(251,248,243,.08) 88%,
 
-          rgba(251,248,243,.45) 100%
+          rgba(251,248,243,.28) 100%
         );
     }
 
@@ -667,693 +646,333 @@
     }
 
 
-/* ============================
-   MOBILE
-============================ */
+    /* ==================================================
+       MOBILE
+       唯一一套手機版 CSS
+    ================================================== */
 
-@media(max-width: 700px) {
+    @media screen and (max-width: 700px) {
 
-  body {
-    padding:
-      12px
-      10px
-      40px;
-  }
+      body {
+        padding:
+          10px
+          10px
+          40px;
+      }
 
 
-  /* =========================
-     手機 HERO
-  ========================= */
+      /* HERO */
 
-  .hero {
-    position: relative;
+      .hero {
+        position: relative;
 
-    min-height: 245px;
+        min-height: 220px;
 
-    padding:
-      18px
-      12px
-      18px
-      12px;
+        padding:
+          16px
+          10px
+          12px
+          10px;
 
-    overflow: hidden;
+        overflow: hidden;
 
-    isolation: isolate;
-  }
+        isolation: isolate;
+      }
 
 
-  /* =========================
-     瑞恩中醫
-  ========================= */
+      /* 瑞恩中醫 */
 
-  .brand {
-    position: relative;
+      .brand {
+        position: relative;
 
-    z-index: 10;
+        z-index: 20;
 
-    gap: 7px;
+        max-width: 145px;
 
-    padding-bottom: 7px;
+        gap: 6px;
 
-    max-width: 150px;
-  }
+        padding-bottom: 6px;
+      }
 
+      .brand-mark {
+        width: 26px;
+        height: 26px;
+      }
 
-  .brand-mark {
-    width: 27px;
-    height: 27px;
-  }
+      .brand-name {
+        font-size: 17px;
 
+        letter-spacing: 1px;
 
-  .brand-name {
-    font-size: 18px;
+        white-space: nowrap;
+      }
 
-    letter-spacing: 1px;
 
-    white-space: nowrap;
-  }
+      /* 標題 */
 
+      .title-row {
+        position: relative;
 
-  /* =========================
-     標題
-  ========================= */
+        z-index: 20;
 
-  .title-row {
-    position: relative;
+        display: flex;
 
-    z-index: 10;
+        align-items: center;
 
-    display: flex;
+        gap: 7px;
 
-    align-items: center;
+        margin-top: 27px;
 
-    gap: 9px;
+        width:
+          calc(100% - 145px);
 
-    margin-top: 30px;
+        max-width:
+          calc(100% - 145px);
+      }
 
-    width: 62%;
-  }
+      .cancel-icon {
+        width: 38px;
+        height: 38px;
 
+        min-width: 38px;
 
-  .cancel-icon {
-    width: 42px;
-    height: 42px;
+        border-radius: 10px;
+      }
 
-    min-width: 42px;
+      .cancel-icon svg {
+        width: 24px;
+        height: 24px;
+      }
 
-    border-radius: 11px;
-  }
+      h1 {
+        margin: 0;
 
+        font-size: 22px;
 
-  .cancel-icon svg {
-    width: 27px;
-    height: 27px;
-  }
+        line-height: 1.15;
 
+        letter-spacing: 0;
 
-  h1 {
-    font-size: 27px;
+        white-space: nowrap;
 
-    line-height: 1.15;
+        position: relative;
 
-    letter-spacing: 0;
+        z-index: 20;
+      }
 
-    white-space: nowrap;
 
-    position: relative;
+      /* 副標題 */
 
-    z-index: 10;
-  }
+      .subtitle {
+        position: relative;
 
+        z-index: 20;
 
-  /* =========================
-     副標題
-  ========================= */
+        width:
+          calc(100% - 155px);
 
-  .subtitle {
-    position: relative;
+        max-width:
+          calc(100% - 155px);
 
-    z-index: 10;
+        margin-top: 13px;
 
-    width: 58%;
+        font-size: 13px;
 
-    max-width: 58%;
+        line-height: 1.65;
 
-    margin-top: 14px;
+        color: #75665a;
+      }
 
-    font-size: 14px;
 
-    line-height: 1.7;
+      /* 人物 */
 
-    color: #75665a;
-  }
+      .character-area {
+        position: absolute;
 
+        top: 16px;
 
-  /* =========================
-     人物
-  ========================= */
+        right: -25px;
 
-  .character-area {
-    position: absolute;
+        width: 155px;
 
-    top: 8px;
+        height: 185px;
 
-    right: -20px;
+        z-index: 2;
 
-    width: 205px;
+        pointer-events: none;
+      }
 
-    height: 225px;
+      .character-image {
+        position: absolute;
 
-    z-index: 1;
+        inset: 0;
 
-    pointer-events: none;
-  }
+        background:
+          url("https://i.ibb.co/Z1kPkDK9/image.jpg")
+          right top
+          / contain
+          no-repeat;
 
+        opacity: 1;
+      }
 
-  .character-image {
-    position: absolute;
 
-    inset: 0;
+      /* 人物左邊只淡一點 */
 
-    background:
-      url("https://i.ibb.co/Z1kPkDK9/image.jpg")
-      right top
-      / contain
-      no-repeat;
+      .character-area::before {
+        content: "";
 
-    opacity: 1;
-  }
+        position: absolute;
 
+        inset: 0;
 
-  /*
-   * 靠近文字的左側
-   * 只稍微淡化
-   */
-  .character-area::before {
-    content: "";
+        z-index: 2;
 
-    position: absolute;
+        background:
+          linear-gradient(
+            90deg,
 
-    inset: 0;
+            #fbf8f3 0%,
 
-    z-index: 2;
+            rgba(251,248,243,.55) 7%,
 
-    background:
-      linear-gradient(
-        90deg,
+            rgba(251,248,243,.16) 17%,
 
-        #fbf8f3 0%,
+            rgba(251,248,243,.02) 27%,
 
-        rgba(251,248,243,.70) 8%,
+            rgba(251,248,243,0) 35%
+          );
+      }
 
-        rgba(251,248,243,.26) 20%,
 
-        rgba(251,248,243,.04) 32%,
+      /* 人物底部輕微融合 */
 
-        rgba(251,248,243,0) 42%
-      );
-  }
+      .character-area::after {
+        content: "";
 
+        position: absolute;
 
-  /*
-   * 人物底部輕微融入背景
-   */
-  .character-area::after {
-    content: "";
+        inset: 0;
 
-    position: absolute;
+        z-index: 3;
 
-    inset: 0;
+        background:
+          linear-gradient(
+            180deg,
 
-    z-index: 3;
+            rgba(251,248,243,0) 84%,
 
-    background:
-      linear-gradient(
-        180deg,
+            rgba(251,248,243,.06) 92%,
 
-        rgba(251,248,243,0) 82%,
+            rgba(251,248,243,.18) 100%
+          );
+      }
 
-        rgba(251,248,243,.08) 92%,
 
-        rgba(251,248,243,.20) 100%
-      );
-  }
+      /* 提示框 */
 
+      .notice {
+        margin-top: 4px;
 
-  /* =========================
-     提示框
-  ========================= */
+        padding:
+          13px
+          13px;
 
-  .notice {
-    margin-top: 2px;
+        font-size: 13px;
 
-    padding:
-      13px
-      14px;
+        line-height: 1.7;
 
-    border-radius: 14px;
+        border-radius: 14px;
+      }
 
-    font-size: 13px;
+      .notice-row {
+        gap: 7px;
+      }
 
-    line-height: 1.75;
-  }
+      .notice-icon {
+        width: 20px;
+        height: 20px;
+      }
 
 
-  .notice-row {
-    gap: 8px;
-  }
+      /* 表單 */
 
+      .card {
+        margin-top: 17px;
 
-  .notice-icon {
-    width: 21px;
-    height: 21px;
-  }
+        padding:
+          19px
+          16px;
 
+        border-radius: 21px;
+      }
 
-  /* =========================
-     表單
-  ========================= */
+      #status {
+        margin-bottom: 20px;
 
-  .card {
-    margin-top: 18px;
+        padding:
+          13px
+          9px;
 
-    padding:
-      20px
-      17px;
+        font-size: 14px;
 
-    border-radius: 22px;
-  }
+        line-height: 1.6;
+      }
 
+      .field {
+        margin-bottom: 22px;
+      }
 
-  #status {
-    margin-bottom: 22px;
+      .label {
+        font-size: 16px;
 
-    padding:
-      14px
-      10px;
+        margin-bottom: 9px;
+      }
 
-    font-size: 14px;
-  }
+      input,
+      select,
+      textarea {
+        min-height: 52px;
 
+        padding:
+          13px
+          14px;
 
-  .label {
-    font-size: 16px;
-  }
+        font-size: 16px;
 
+        border-radius: 13px;
+      }
 
-  input,
-  select,
-  textarea {
-    min-height: 52px;
 
-    font-size: 16px;
+      /* 日期與時段手機上下排列 */
 
-    border-radius: 13px;
-  }
+      .time-grid {
+        display: grid;
 
+        grid-template-columns:
+          1fr;
 
-  /* 日期與時段手機上下排列 */
-  .time-grid {
-    grid-template-columns:
-      1fr;
+        gap: 10px;
+      }
 
-    gap: 10px;
-  }
 
+      .reason-item {
+        min-height: 54px;
 
-  .reason-item {
-    min-height: 55px;
+        padding:
+          13px
+          14px;
+      }
 
-    padding:
-      14px
-      15px;
-  }
 
+      button {
+        min-height: 54px;
 
-  button {
-    min-height: 54px;
+        font-size: 17px;
+      }
 
-    font-size: 17px;
-  }
+    }
 
-}
-/* ==================================================
-   手機版 FINAL OVERRIDE
-   一定放在 </style> 前最後面
-================================================== */
-
-@media screen and (max-width: 700px) {
-
-  body {
-    padding: 10px 10px 40px !important;
-  }
-
-
-  /* =========================
-     HERO 整體
-  ========================= */
-
-  .hero {
-    position: relative !important;
-
-    min-height: 220px !important;
-
-    padding:
-      16px
-      10px
-      12px
-      10px !important;
-
-    overflow: hidden !important;
-  }
-
-
-  /* =========================
-     瑞恩中醫
-  ========================= */
-
-  .brand {
-    position: relative !important;
-
-    z-index: 20 !important;
-
-    max-width: 145px !important;
-
-    gap: 6px !important;
-
-    padding-bottom: 6px !important;
-  }
-
-
-  .brand-mark {
-    width: 26px !important;
-    height: 26px !important;
-  }
-
-
-  .brand-name {
-    font-size: 17px !important;
-
-    letter-spacing: 1px !important;
-
-    white-space: nowrap !important;
-  }
-
-
-  /* =========================
-     主標題
-  ========================= */
-
-  .title-row {
-    position: relative !important;
-
-    z-index: 20 !important;
-
-    display: flex !important;
-
-    align-items: center !important;
-
-    gap: 7px !important;
-
-    margin-top: 27px !important;
-
-    /*
-     * 最重要：
-     * 限制標題區，不讓它進入人物範圍
-     */
-    width: 58% !important;
-
-    max-width: 58% !important;
-  }
-
-
-  .cancel-icon {
-    width: 38px !important;
-    height: 38px !important;
-
-    min-width: 38px !important;
-
-    border-radius: 10px !important;
-  }
-
-
-  .cancel-icon svg {
-    width: 24px !important;
-    height: 24px !important;
-  }
-
-
-  h1 {
-    margin: 0 !important;
-
-    font-size: 23px !important;
-
-    line-height: 1.15 !important;
-
-    letter-spacing: 0 !important;
-
-    white-space: nowrap !important;
-
-    position: relative !important;
-
-    z-index: 20 !important;
-  }
-
-
-  /* =========================
-     副標題
-  ========================= */
-
-  .subtitle {
-    position: relative !important;
-
-    z-index: 20 !important;
-
-    width: 52% !important;
-
-    max-width: 52% !important;
-
-    margin-top: 13px !important;
-
-    font-size: 13px !important;
-
-    line-height: 1.65 !important;
-
-    color: #75665a !important;
-  }
-
-
-  /* =========================
-     右側人物
-  ========================= */
-
-  .character-area {
-    position: absolute !important;
-
-    /*
-     * 人物往右、稍微往下
-     */
-    top: 18px !important;
-
-    right: -18px !important;
-
-    /*
-     * 比目前小很多
-     */
-    width: 175px !important;
-
-    height: 190px !important;
-
-    z-index: 2 !important;
-
-    pointer-events: none !important;
-  }
-
-
-  .character-image {
-    position: absolute !important;
-
-    inset: 0 !important;
-
-    background:
-      url("https://i.ibb.co/Z1kPkDK9/image.jpg")
-      right top
-      / contain
-      no-repeat !important;
-
-    opacity: 1 !important;
-  }
-
-
-  /* =========================
-     人物左邊只淡一點
-  ========================= */
-
-  .character-area::before {
-    content: "" !important;
-
-    position: absolute !important;
-
-    inset: 0 !important;
-
-    z-index: 2 !important;
-
-    background:
-      linear-gradient(
-        90deg,
-
-        #fbf8f3 0%,
-
-        rgba(251,248,243,.65) 7%,
-
-        rgba(251,248,243,.20) 17%,
-
-        rgba(251,248,243,.02) 27%,
-
-        rgba(251,248,243,0) 35%
-      ) !important;
-  }
-
-
-  /* =========================
-     人物底部輕微融合
-  ========================= */
-
-  .character-area::after {
-    content: "" !important;
-
-    position: absolute !important;
-
-    inset: 0 !important;
-
-    z-index: 3 !important;
-
-    background:
-      linear-gradient(
-        180deg,
-
-        rgba(251,248,243,0) 84%,
-
-        rgba(251,248,243,.06) 92%,
-
-        rgba(251,248,243,.18) 100%
-      ) !important;
-  }
-
-
-  /* =========================
-     提示框
-  ========================= */
-
-  .notice {
-    margin-top: 4px !important;
-
-    padding:
-      13px
-      13px !important;
-
-    font-size: 13px !important;
-
-    line-height: 1.7 !important;
-
-    border-radius: 14px !important;
-  }
-
-
-  .notice-row {
-    gap: 7px !important;
-  }
-
-
-  .notice-icon {
-    width: 20px !important;
-    height: 20px !important;
-  }
-
-
-  /* =========================
-     表單
-  ========================= */
-
-  .card {
-    margin-top: 17px !important;
-
-    padding:
-      19px
-      16px !important;
-
-    border-radius: 21px !important;
-  }
-
-
-  #status {
-    margin-bottom: 20px !important;
-
-    padding:
-      13px
-      9px !important;
-
-    font-size: 14px !important;
-
-    line-height: 1.6 !important;
-  }
-
-
-  .field {
-    margin-bottom: 22px !important;
-  }
-
-
-  .label {
-    font-size: 16px !important;
-
-    margin-bottom: 9px !important;
-  }
-
-
-  input,
-  select,
-  textarea {
-    min-height: 52px !important;
-
-    padding:
-      13px
-      14px !important;
-
-    font-size: 16px !important;
-
-    border-radius: 13px !important;
-  }
-
-
-  /* 日期、時段改上下排列 */
-
-  .time-grid {
-    display: grid !important;
-
-    grid-template-columns:
-      1fr !important;
-
-    gap: 10px !important;
-  }
-
-
-  .reason-item {
-    min-height: 54px !important;
-
-    padding:
-      13px
-      14px !important;
-  }
-
-
-  button {
-    min-height: 54px !important;
-
-    font-size: 17px !important;
-  }
-
-}
   </style>
 
 </head>
@@ -1512,6 +1131,7 @@
 
       </div>
 
+
       <h1>
         取消拿藥申請
       </h1>
@@ -1520,11 +1140,13 @@
 
 
     <div class="subtitle">
+
       系統會自動查詢您最近一次的拿藥申請
+
     </div>
 
 
-    <!-- 人物背景 -->
+    <!-- 人物 -->
 
     <div class="character-area">
 
@@ -1854,7 +1476,9 @@
     </div>
 
     <div class="success-title">
+
       已完成取消
+
     </div>
 
     <div class="success-text">
@@ -2758,5 +2382,4 @@ async function cancelMedicine() {
 </script>
 
 </body>
-
 </html>
