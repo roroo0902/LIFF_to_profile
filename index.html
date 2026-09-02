@@ -58,6 +58,7 @@
       margin: 0 auto;
     }
 
+
     /* ============================
        HERO
     ============================ */
@@ -77,6 +78,7 @@
 
       isolation: isolate;
     }
+
 
     /* ============================
        瑞恩中醫品牌
@@ -119,6 +121,7 @@
 
       color: #6a4933;
     }
+
 
     /* ============================
        標題
@@ -205,18 +208,20 @@
       z-index: 5;
     }
 
+
     /* ============================
        Q版人物背景
+       恢復清晰度
     ============================ */
 
     .character-area {
       position: absolute;
 
-      top: -15px;
-      right: -20px;
+      top: -5px;
+      right: -10px;
 
-      width: 480px;
-      height: 340px;
+      width: 430px;
+      height: 320px;
 
       z-index: -1;
 
@@ -234,10 +239,11 @@
         / contain
         no-repeat;
 
-      opacity: 0.28;
+      opacity: 0.92;
     }
 
-    /* 左側淡出 */
+
+    /* 左側輕微淡出 */
     .character-area::before {
       content: "";
 
@@ -253,17 +259,18 @@
 
           #fbf8f3 0%,
 
-          rgba(251,248,243,.93) 15%,
+          rgba(251,248,243,.82) 8%,
 
-          rgba(251,248,243,.65) 35%,
+          rgba(251,248,243,.35) 23%,
 
-          rgba(251,248,243,.18) 60%,
+          rgba(251,248,243,.08) 38%,
 
-          rgba(251,248,243,0) 82%
+          rgba(251,248,243,0) 52%
         );
     }
 
-    /* 下方淡出 */
+
+    /* 下方輕微融合 */
     .character-area::after {
       content: "";
 
@@ -277,13 +284,14 @@
         linear-gradient(
           180deg,
 
-          rgba(251,248,243,0) 55%,
+          rgba(251,248,243,0) 72%,
 
-          rgba(251,248,243,.15) 73%,
+          rgba(251,248,243,.10) 86%,
 
-          #fbf8f3 100%
+          rgba(251,248,243,.45) 100%
         );
     }
+
 
     /* ============================
        NOTICE
@@ -325,6 +333,7 @@
 
       margin-top: 1px;
     }
+
 
     /* ============================
        FORM CARD
@@ -469,8 +478,9 @@
       margin-top: 12px;
     }
 
+
     /* ============================
-       Reason
+       取消原因
     ============================ */
 
     .reason-group {
@@ -524,6 +534,7 @@
       font-size: 13px;
     }
 
+
     /* ============================
        WARNING
     ============================ */
@@ -545,6 +556,7 @@
 
       line-height: 1.75;
     }
+
 
     /* ============================
        BUTTON
@@ -598,8 +610,9 @@
       cursor: not-allowed;
     }
 
+
     /* ============================
-       Success
+       SUCCESS
     ============================ */
 
     #successPage {
@@ -630,6 +643,7 @@
       color: #8c7768;
       font-size: 14px;
     }
+
 
     /* ============================
        MOBILE
@@ -690,22 +704,24 @@
 
       .subtitle {
         margin-top: 10px;
+
         max-width: 68%;
 
         font-size: 13px;
+
         line-height: 1.65;
       }
 
       .character-area {
         top: 5px;
-        right: -35px;
+        right: -18px;
 
-        width: 270px;
-        height: 225px;
+        width: 220px;
+        height: 220px;
       }
 
       .character-image {
-        opacity: 0.22;
+        opacity: 0.90;
       }
 
       .notice {
@@ -734,14 +750,22 @@
     }
 
   </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-  <!-- HERO -->
+
+  <!-- ============================
+       HERO
+  ============================ -->
+
   <section class="hero">
+
+
+    <!-- 瑞恩中醫 -->
 
     <div class="brand">
 
@@ -805,6 +829,8 @@
 
     </div>
 
+
+    <!-- 標題 -->
 
     <div class="title-row">
 
@@ -893,14 +919,21 @@
     </div>
 
 
+    <!-- 人物背景 -->
+
     <div class="character-area">
+
       <div class="character-image"></div>
+
     </div>
 
   </section>
 
 
-  <!-- NOTICE -->
+  <!-- ============================
+       NOTICE
+  ============================ -->
+
   <div class="notice">
 
     <div class="notice-row">
@@ -935,10 +968,13 @@
 
       </svg>
 
+
       <span>
+
         本表單僅提供取消拿藥，
         若需要修改拿藥時間或是內容，
         請再重新填寫照拿藥表單。
+
       </span>
 
     </div>
@@ -946,25 +982,39 @@
   </div>
 
 
-  <!-- MAIN FORM -->
+  <!-- ============================
+       FORM
+  ============================ -->
+
   <div
     class="card"
     id="mainCard"
   >
 
     <div id="status">
+
       正在連接 LINE 並查詢您的拿藥資料...
+
     </div>
 
 
     <div id="medicineData">
 
+
+      <!-- 姓名 -->
+
       <div class="field">
 
         <label class="label">
+
           姓名
-          <span class="required">*</span>
+
+          <span class="required">
+            *
+          </span>
+
         </label>
+
 
         <input
           id="name"
@@ -975,12 +1025,20 @@
       </div>
 
 
+      <!-- 拿藥天數 -->
+
       <div class="field">
 
         <label class="label">
+
           原本拿藥天數
-          <span class="required">*</span>
+
+          <span class="required">
+            *
+          </span>
+
         </label>
+
 
         <select
           id="medicineDays"
@@ -1010,6 +1068,7 @@
 
         </select>
 
+
         <div id="otherDaysBox">
 
           <input
@@ -1025,12 +1084,20 @@
       </div>
 
 
+      <!-- 取藥時間 -->
+
       <div class="field">
 
         <label class="label">
+
           原本預計取藥時間
-          <span class="required">*</span>
+
+          <span class="required">
+            *
+          </span>
+
         </label>
+
 
         <div class="time-grid">
 
@@ -1038,6 +1105,7 @@
             type="date"
             id="pickupDate"
           >
+
 
           <select id="pickupPeriod">
 
@@ -1064,43 +1132,63 @@
       </div>
 
 
+      <!-- 取消原因 -->
+
       <div class="field">
 
         <label class="label">
+
           取消原因
-          <span class="required">*</span>
+
+          <span class="required">
+            *
+          </span>
+
         </label>
+
 
         <div class="reason-group">
 
+
           <label class="reason-item">
+
             <input
               type="radio"
               name="cancelReason"
               value="改其他時間取藥"
               onchange="reasonChanged()"
             >
+
             改其他時間取藥
+
           </label>
 
+
           <label class="reason-item">
+
             <input
               type="radio"
               name="cancelReason"
               value="藥物效果不佳"
               onchange="reasonChanged()"
             >
+
             藥物效果不佳
+
           </label>
 
+
           <label class="reason-item">
+
             <input
               type="radio"
               name="cancelReason"
               value="其他"
               onchange="reasonChanged()"
             >
+
             其他(可不填寫)
+
           </label>
 
         </div>
@@ -1113,8 +1201,11 @@
             placeholder="若有其他原因或補充內容，可在此填寫"
           ></textarea>
 
+
           <div class="small-note">
+
             此欄位可不填寫
+
           </div>
 
         </div>
@@ -1123,8 +1214,10 @@
 
 
       <div class="warning">
+
         ⚠️ 送出後會建立取消拿藥紀錄，
         請確認拿藥天數、取藥時間與取消原因是否正確。
+
       </div>
 
 
@@ -1132,7 +1225,9 @@
         id="cancelButton"
         onclick="cancelMedicine()"
       >
+
         確認取消
+
       </button>
 
     </div>
@@ -1140,7 +1235,10 @@
   </div>
 
 
-  <!-- SUCCESS -->
+  <!-- ============================
+       SUCCESS
+  ============================ -->
+
   <div
     class="card"
     id="successPage"
@@ -1155,15 +1253,20 @@
     </div>
 
     <div class="success-text">
+
       您的取消拿藥申請已成功送出。<br>
+
       診所將依照最新資料進行後續處理。
+
     </div>
 
   </div>
 
 
   <div class="footer">
+
     瑞恩中醫｜關心您的健康
+
   </div>
 
 </div>
@@ -1968,8 +2071,10 @@ async function cancelMedicine() {
             "POST",
 
           headers: {
+
             "Content-Type":
               "text/plain;charset=utf-8"
+
           },
 
           body:
@@ -2048,4 +2153,5 @@ async function cancelMedicine() {
 </script>
 
 </body>
+
 </html>
