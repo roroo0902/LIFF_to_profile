@@ -799,23 +799,74 @@
       }
 
 
-      /* 人物 */
+/* 標題 */
+.title-row {
+  position: relative;
 
-      .character-area {
-        position: absolute;
+  z-index: 20;
 
-        top: 12px;
+  display: flex;
 
-        right: -25px;
+  align-items: center;
 
-        width: 155px;
+  gap: 7px;
 
-        height: 185px;
+  margin-top: 27px;
 
-        z-index: 2;
+  width: calc(100% - 175px);
 
-        pointer-events: none;
-      }
+  max-width: calc(100% - 175px);
+}
+
+/* 副標 */
+.subtitle {
+  position: relative;
+
+  z-index: 20;
+
+  width: calc(100% - 185px);
+
+  max-width: calc(100% - 185px);
+
+  margin-top: 13px;
+
+  font-size: 13px;
+
+  line-height: 1.65;
+
+  color: #75665a;
+}
+
+/* 人物 */
+.character-area {
+  position: absolute;
+
+  top: 8px;
+
+  right: -18px;
+
+  width: 185px;
+
+  height: 215px;
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+.character-image {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    url("https://i.ibb.co/Z1kPkDK9/image.jpg")
+    right top
+    / contain
+    no-repeat;
+
+  opacity: 1;
+}
 
       .character-image {
         position: absolute;
