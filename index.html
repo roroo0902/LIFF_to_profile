@@ -2,220 +2,1720 @@
 <html lang="zh-Hant">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1"
+    content="width=device-width, initial-scale=1, maximum-scale=1"
   >
 
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-  <title>取消拿藥</title>
+  <title>取消拿藥申請</title>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    html,
+    body {
+
+      margin: 0;
+      padding: 0;
+
+      min-height: 100%;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans TC",
+        Arial,
+        sans-serif;
+
+      color: #40372f;
+    }
+
+
+    body {
+
+      min-height: 100vh;
+
+      padding:
+        24px
+        16px
+        50px;
+
+      background:
+        linear-gradient(
+          rgba(255, 255, 255, 0.76),
+          rgba(255, 255, 255, 0.76)
+        ),
+        url("https://i.ibb.co/Z1kPkDK9/image.jpg");
+
+      background-size: cover;
+
+      background-position:
+        center top;
+
+      background-repeat:
+        no-repeat;
+
+      background-attachment:
+        fixed;
+    }
+
+
+    .container {
+
+      width: 100%;
+
+      max-width: 560px;
+
+      margin: 0 auto;
+    }
+
+
+    .header {
+
+      text-align: center;
+
+      margin-bottom: 20px;
+    }
+
+
+    .header-icon {
+
+      font-size: 44px;
+
+      margin-bottom: 6px;
+    }
+
+
+    h1 {
+
+      margin: 0;
+
+      font-size: 28px;
+
+      color: #674b34;
+    }
+
+
+    .subtitle {
+
+      margin-top: 8px;
+
+      font-size: 15px;
+
+      color: #7c6d61;
+
+      line-height: 1.7;
+    }
+
+
+    .card {
+
+      background:
+        rgba(
+          255,
+          252,
+          247,
+          0.95
+        );
+
+      border-radius: 22px;
+
+      padding: 24px;
+
+      border:
+        1px solid
+        rgba(
+          175,
+          145,
+          110,
+          0.18
+        );
+
+      box-shadow:
+        0 8px 30px
+        rgba(
+          80,
+          60,
+          40,
+          0.13
+        );
+
+      backdrop-filter:
+        blur(5px);
+    }
+
+
+    #status {
+
+      text-align: center;
+
+      margin-bottom: 20px;
+
+      padding: 13px;
+
+      border-radius: 12px;
+
+      background: #f7efe5;
+
+      color: #705c49;
+
+      font-size: 14px;
+
+      line-height: 1.7;
+    }
+
+
+    #medicineData {
+
+      display: none;
+    }
+
+
+    .field {
+
+      margin-bottom: 23px;
+    }
+
+
+    .label {
+
+      display: block;
+
+      margin-bottom: 9px;
+
+      font-size: 15px;
+
+      font-weight: 700;
+
+      color: #5e4938;
+    }
+
+
+    .required {
+
+      color: #c9564f;
+
+      margin-left: 3px;
+    }
+
+
+    .readonly-box {
+
+      width: 100%;
+
+      padding: 13px 14px;
+
+      border-radius: 12px;
+
+      border:
+        1px solid
+        #e3d8cc;
+
+      background: #f8f3ed;
+
+      font-size: 16px;
+
+      color: #51483f;
+    }
+
+
+    select,
+    input,
+    textarea {
+
+      width: 100%;
+
+      padding: 13px 14px;
+
+      border:
+        1px solid
+        #d8c8b9;
+
+      border-radius: 12px;
+
+      background: white;
+
+      font-size: 16px;
+
+      color: #40372f;
+
+      outline: none;
+
+      transition: 0.2s;
+    }
+
+
+    select:focus,
+    input:focus,
+    textarea:focus {
+
+      border-color: #a98560;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(
+          169,
+          133,
+          96,
+          0.13
+        );
+    }
+
+
+    textarea {
+
+      min-height: 92px;
+
+      resize: vertical;
+    }
+
+
+    #otherDaysBox {
+
+      display: none;
+
+      margin-top: 10px;
+    }
+
+
+    .time-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 0.75fr;
+
+      gap: 10px;
+    }
+
+
+    .reason-group {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 10px;
+    }
+
+
+    .reason-item {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      padding:
+        13px
+        14px;
+
+      border:
+        1px solid
+        #dfd2c6;
+
+      border-radius: 12px;
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.85
+        );
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+
+    .reason-item:hover {
+
+      border-color: #b99a7c;
+
+      background: #fffaf5;
+    }
+
+
+    .reason-item input {
+
+      width: auto;
+
+      margin: 0;
+
+      transform:
+        scale(1.15);
+    }
+
+
+    #otherReasonBox {
+
+      display: none;
+
+      margin-top: 12px;
+    }
+
+
+    .warning {
+
+      margin-top: 8px;
+
+      padding: 13px;
+
+      border-radius: 12px;
+
+      background: #fff4ef;
+
+      color: #9b5145;
+
+      font-size: 14px;
+
+      line-height: 1.7;
+    }
+
+
+    button {
+
+      width: 100%;
+
+      margin-top: 24px;
+
+      padding: 15px;
+
+      border: none;
+
+      border-radius: 14px;
+
+      background: #a35e4d;
+
+      color: white;
+
+      font-size: 17px;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+
+    button:hover {
+
+      background: #8f4f40;
+    }
+
+
+    button:disabled {
+
+      opacity: 0.58;
+
+      cursor: not-allowed;
+    }
+
+
+    #successPage {
+
+      display: none;
+
+      text-align: center;
+    }
+
+
+    .success-icon {
+
+      font-size: 64px;
+
+      margin-bottom: 14px;
+    }
+
+
+    .success-title {
+
+      font-size: 24px;
+
+      font-weight: 700;
+
+      color: #72513b;
+
+      margin-bottom: 10px;
+    }
+
+
+    .success-text {
+
+      font-size: 15px;
+
+      color: #71665d;
+
+      line-height: 1.8;
+    }
+
+
+    @media(max-width: 480px) {
+
+      body {
+
+        padding:
+          18px
+          12px
+          40px;
+
+        background-position:
+          center top;
+      }
+
+
+      .card {
+
+        padding:
+          20px
+          17px;
+      }
+
+
+      h1 {
+
+        font-size: 25px;
+      }
+
+
+      .time-grid {
+
+        grid-template-columns:
+          1fr;
+      }
+
+    }
+
+  </style>
+
 </head>
+
 
 <body>
 
-  <h2>取消拿藥申請</h2>
 
-  <div id="status">
-    LINE 資料讀取中...
-  </div>
+<div class="container">
 
-  <div id="medicineData" style="display:none;">
 
-    <p>
-      姓名：
-      <span id="name"></span>
-    </p>
+  <div class="header">
 
-    <p>
-      拿藥天數：
-      <span id="medicineDays"></span>
-    </p>
+    <div class="header-icon">
+      🌿
+    </div>
 
-    <p>
-      預計取藥時間：
-      <span id="pickupTime"></span>
-    </p>
+    <h1>
+      取消拿藥申請
+    </h1>
 
-    <textarea
-      id="cancelReason"
-      placeholder="取消原因（選填）"
-    ></textarea>
+    <div class="subtitle">
 
-    <br><br>
+      系統會自動帶入您最近一次的拿藥申請<br>
+      您可以確認或修改資料後再送出
 
-    <button onclick="cancelMedicine()">
-      確認取消
-    </button>
+    </div>
 
   </div>
+
+
+
+  <div
+    class="card"
+    id="mainCard"
+  >
+
+
+    <div id="status">
+
+      正在連接 LINE 並查詢您的拿藥資料...
+
+    </div>
+
+
+
+    <div id="medicineData">
+
+
+      <!-- 姓名 -->
+
+      <div class="field">
+
+        <label class="label">
+          姓名
+        </label>
+
+        <div
+          id="name"
+          class="readonly-box"
+        ></div>
+
+      </div>
+
+
+
+      <!-- 拿藥天數 -->
+
+      <div class="field">
+
+        <label
+          for="medicineDays"
+          class="label"
+        >
+
+          拿藥天數
+
+          <span class="required">
+            *
+          </span>
+
+        </label>
+
+
+        <select
+          id="medicineDays"
+          onchange="medicineDaysChanged()"
+        >
+
+          <option value="">
+            請選擇拿藥天數
+          </option>
+
+          <option value="3天">3天</option>
+          <option value="4天">4天</option>
+          <option value="5天">5天</option>
+          <option value="6天">6天</option>
+          <option value="7天">7天</option>
+          <option value="8天">8天</option>
+          <option value="9天">9天</option>
+          <option value="10天">10天</option>
+          <option value="11天">11天</option>
+          <option value="12天">12天</option>
+          <option value="13天">13天</option>
+          <option value="14天">14天</option>
+
+          <option value="其他">
+            其他
+          </option>
+
+        </select>
+
+
+        <div id="otherDaysBox">
+
+          <input
+            type="number"
+            id="otherDays"
+            min="1"
+            max="99"
+            inputmode="numeric"
+            placeholder="請輸入其他拿藥天數"
+          >
+
+        </div>
+
+      </div>
+
+
+
+      <!-- 取藥日期 -->
+
+      <div class="field">
+
+        <label class="label">
+
+          預計取藥時間
+
+          <span class="required">
+            *
+          </span>
+
+        </label>
+
+
+        <div class="time-grid">
+
+
+          <input
+            type="date"
+            id="pickupDate"
+          >
+
+
+          <select id="pickupPeriod">
+
+            <option value="">
+              請選擇時段
+            </option>
+
+            <option value="上午">
+              上午
+            </option>
+
+            <option value="下午">
+              下午
+            </option>
+
+            <option value="晚上">
+              晚上
+            </option>
+
+          </select>
+
+
+        </div>
+
+      </div>
+
+
+
+      <!-- 取消原因 -->
+
+      <div class="field">
+
+        <label class="label">
+
+          取消原因
+
+          <span class="required">
+            *
+          </span>
+
+        </label>
+
+
+        <div class="reason-group">
+
+
+          <label class="reason-item">
+
+            <input
+              type="radio"
+              name="cancelReason"
+              value="改其他時間取藥"
+              onchange="reasonChanged()"
+            >
+
+            改其他時間取藥
+
+          </label>
+
+
+          <label class="reason-item">
+
+            <input
+              type="radio"
+              name="cancelReason"
+              value="藥物效果不佳"
+              onchange="reasonChanged()"
+            >
+
+            藥物效果不佳
+
+          </label>
+
+
+          <label class="reason-item">
+
+            <input
+              type="radio"
+              name="cancelReason"
+              value="其他"
+              onchange="reasonChanged()"
+            >
+
+            其他
+
+          </label>
+
+
+        </div>
+
+
+        <div id="otherReasonBox">
+
+          <textarea
+            id="otherReason"
+            placeholder="請填寫其他取消原因"
+          ></textarea>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="warning">
+
+        ⚠️ 送出後會建立取消拿藥紀錄，
+        請確認拿藥天數、取藥時間與取消原因是否正確。
+
+      </div>
+
+
+
+      <button
+        id="cancelButton"
+        onclick="cancelMedicine()"
+      >
+
+        確認取消
+
+      </button>
+
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- 成功畫面 -->
+
+  <div
+    class="card"
+    id="successPage"
+  >
+
+    <div class="success-icon">
+      ✅
+    </div>
+
+    <div class="success-title">
+
+      已完成取消
+
+    </div>
+
+    <div class="success-text">
+
+      您的取消拿藥申請已成功送出。<br>
+
+      診所將依照您最新填寫的內容進行後續處理。
+
+    </div>
+
+  </div>
+
+
+</div>
+
 
 
 <script>
 
+
+/************************************************
+ * 這裡請改成你自己的資料
+ ************************************************/
+
 const LIFF_ID =
-  "2011216294-KZGH20MJ";
+  "你的LIFF_ID";
+
 
 const GAS_URL =
-  "https://script.google.com/macros/s/AKfycbwsCbsHIblPUlGLWXDruY9ozvP3w8Z3fywG5KBZxQKXE7mbbijjUrH7NHRSwVCOxB-IqQ/exec";
+  "你的GAS_WEB_APP_EXEC網址";
 
 
-let currentUserID = "";
-let currentUserName = "";
 
-let currentRowNumber = null;
+/************************************************
+ * 使用者資料
+ ************************************************/
+
+let currentUserID =
+  "";
+
+let currentUserName =
+  "";
+
+let currentRowNumber =
+  null;
 
 
-/*********************************
- * 初始化
- *********************************/
-window.onload = async function () {
+
+/************************************************
+ * 網頁啟動
+ ************************************************/
+
+window.addEventListener(
+  "load",
+  initializePage
+);
+
+
+
+/************************************************
+ * 初始化 LIFF
+ ************************************************/
+
+async function initializePage() {
+
 
   try {
 
+
     await liff.init({
-      liffId: LIFF_ID
+
+      liffId:
+        LIFF_ID
+
     });
 
 
-    if (!liff.isLoggedIn()) {
+
+    if (
+      !liff.isLoggedIn()
+    ) {
+
+
       liff.login();
+
+
       return;
+
     }
+
 
 
     const profile =
       await liff.getProfile();
 
 
+
     currentUserID =
-      profile.userId;
+      profile.userId || "";
+
 
     currentUserName =
-      profile.displayName;
+      profile.displayName || "";
 
 
-    document.getElementById(
-      "status"
-    ).innerText =
-      "正在查詢您的拿藥資料...";
+
+    if (
+      !currentUserID
+    ) {
+
+      throw new Error(
+        "沒有取得 LINE userID"
+      );
+
+    }
+
+
+
+    document
+      .getElementById(
+        "status"
+      )
+      .innerText =
+        "正在查詢您的拿藥資料...";
+
 
 
     await loadMedicineData();
 
 
-  } catch (error) {
+  } catch(error) {
 
-    document.getElementById(
-      "status"
-    ).innerText =
-      "LINE資料取得失敗：" +
-      error.message;
+
+    document
+      .getElementById(
+        "status"
+      )
+      .innerText =
+        "資料讀取失敗：" +
+        (
+          error.message ||
+          String(error)
+        );
+
 
   }
 
-};
+}
 
 
-/*********************************
- * 查詢拿藥資料
- *********************************/
+
+/************************************************
+ * 查詢最近一次拿藥
+ ************************************************/
+
 async function loadMedicineData() {
 
-  const url =
-    GAS_URL +
-    "?action=getLatest" +
-    "&userID=" +
-    encodeURIComponent(
-      currentUserID
+
+  try {
+
+
+    const url =
+      GAS_URL +
+
+      "?action=getLatest" +
+
+      "&userID=" +
+
+      encodeURIComponent(
+        currentUserID
+      ) +
+
+      "&t=" +
+
+      Date.now();
+
+
+
+    const response =
+      await fetch(
+        url,
+        {
+          method: "GET"
+        }
+      );
+
+
+
+    if (
+      !response.ok
+    ) {
+
+      throw new Error(
+        "GAS 回應異常"
+      );
+
+    }
+
+
+
+    const result =
+      await response.json();
+
+
+
+    if (
+      !result.found
+    ) {
+
+
+      document
+        .getElementById(
+          "status"
+        )
+        .innerText =
+          result.message ||
+          "目前沒有可取消的拿藥申請";
+
+
+      return;
+
+    }
+
+
+
+    currentRowNumber =
+      result.rowNumber;
+
+
+
+    /********************************
+     * 姓名
+     ********************************/
+
+    document
+      .getElementById(
+        "name"
+      )
+      .innerText =
+        result.name || "";
+
+
+
+    /********************************
+     * 拿藥天數
+     ********************************/
+
+    setMedicineDays(
+      result.medicineDays
     );
 
 
-  const response =
-    await fetch(url);
+
+    /********************************
+     * 取藥日期/時段
+     ********************************/
+
+    setPickupTime(
+      result.pickupTime
+    );
 
 
-  const result =
-    await response.json();
+
+    document
+      .getElementById(
+        "status"
+      )
+      .innerText =
+        "已找到您的拿藥申請";
 
 
-  if (!result.found) {
 
-    document.getElementById(
-      "status"
-    ).innerText =
-      "目前沒有可取消的拿藥申請";
+    document
+      .getElementById(
+        "medicineData"
+      )
+      .style.display =
+        "block";
+
+
+  } catch(error) {
+
+
+    document
+      .getElementById(
+        "status"
+      )
+      .innerText =
+        "拿藥資料查詢失敗：" +
+        (
+          error.message ||
+          String(error)
+        );
+
+
+  }
+
+}
+
+
+
+/************************************************
+ * 自動帶入拿藥天數
+ ************************************************/
+
+function setMedicineDays(value) {
+
+
+  const raw =
+    String(
+      value || ""
+    )
+    .trim();
+
+
+
+  const numberMatch =
+    raw.match(
+      /\d+/
+    );
+
+
+
+  if (
+    !numberMatch
+  ) {
 
     return;
 
   }
 
 
-  currentRowNumber =
-    result.rowNumber;
+
+  const days =
+    Number(
+      numberMatch[0]
+    );
 
 
-  document.getElementById(
-    "name"
-  ).innerText =
-    result.name;
+
+  const select =
+    document.getElementById(
+      "medicineDays"
+    );
 
 
-  document.getElementById(
-    "medicineDays"
-  ).innerText =
-    result.medicineDays;
+
+  if (
+    days >= 3 &&
+    days <= 14
+  ) {
 
 
-  document.getElementById(
-    "pickupTime"
-  ).innerText =
-    result.pickupTime;
+    select.value =
+      days + "天";
 
 
-  document.getElementById(
-    "status"
-  ).innerText =
-    "找到您的拿藥申請";
+    document
+      .getElementById(
+        "otherDaysBox"
+      )
+      .style.display =
+        "none";
 
 
-  document.getElementById(
-    "medicineData"
-  ).style.display =
-    "block";
+  } else {
+
+
+    select.value =
+      "其他";
+
+
+    document
+      .getElementById(
+        "otherDays"
+      )
+      .value =
+        days;
+
+
+    document
+      .getElementById(
+        "otherDaysBox"
+      )
+      .style.display =
+        "block";
+
+  }
 
 }
 
 
-/*********************************
- * 取消
- *********************************/
-async function cancelMedicine() {
 
-  const cancelReason =
+/************************************************
+ * 拿藥天數選單變更
+ ************************************************/
+
+function medicineDaysChanged() {
+
+
+  const selected =
     document
       .getElementById(
-        "cancelReason"
+        "medicineDays"
+      )
+      .value;
+
+
+
+  const box =
+    document
+      .getElementById(
+        "otherDaysBox"
+      );
+
+
+
+  if (
+    selected ===
+      "其他"
+  ) {
+
+
+    box.style.display =
+      "block";
+
+
+  } else {
+
+
+    box.style.display =
+      "none";
+
+
+    document
+      .getElementById(
+        "otherDays"
+      )
+      .value =
+        "";
+
+  }
+
+}
+
+
+
+/************************************************
+ * 自動帶入預計取藥時間
+ *
+ * 支援：
+ * 2026-09-01 下午
+ * 2026/09/01 下午
+ * 2026/9/1 下午
+ ************************************************/
+
+function setPickupTime(value) {
+
+
+  const text =
+    String(
+      value || ""
+    ).trim();
+
+
+
+  const dateMatch =
+    text.match(
+      /(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/
+    );
+
+
+
+  if (
+    dateMatch
+  ) {
+
+
+    const year =
+      dateMatch[1];
+
+
+    const month =
+      String(
+        dateMatch[2]
+      )
+      .padStart(
+        2,
+        "0"
+      );
+
+
+    const day =
+      String(
+        dateMatch[3]
+      )
+      .padStart(
+        2,
+        "0"
+      );
+
+
+    document
+      .getElementById(
+        "pickupDate"
+      )
+      .value =
+        `${year}-${month}-${day}`;
+
+  }
+
+
+
+  const periodSelect =
+    document.getElementById(
+      "pickupPeriod"
+    );
+
+
+
+  if (
+    text.includes(
+      "上午"
+    )
+  ) {
+
+
+    periodSelect.value =
+      "上午";
+
+
+  } else if (
+    text.includes(
+      "下午"
+    )
+  ) {
+
+
+    periodSelect.value =
+      "下午";
+
+
+  } else if (
+    text.includes(
+      "晚上"
+    )
+  ) {
+
+
+    periodSelect.value =
+      "晚上";
+
+  }
+
+}
+
+
+
+/************************************************
+ * 取消原因切換
+ ************************************************/
+
+function reasonChanged() {
+
+
+  const selected =
+    document.querySelector(
+      'input[name="cancelReason"]:checked'
+    );
+
+
+
+  const otherBox =
+    document.getElementById(
+      "otherReasonBox"
+    );
+
+
+
+  if (
+    selected &&
+    selected.value ===
+      "其他"
+  ) {
+
+
+    otherBox.style.display =
+      "block";
+
+
+  } else {
+
+
+    otherBox.style.display =
+      "none";
+
+
+    document
+      .getElementById(
+        "otherReason"
+      )
+      .value =
+        "";
+
+  }
+
+}
+
+
+
+/************************************************
+ * 取得最後拿藥天數
+ ************************************************/
+
+function getMedicineDays() {
+
+
+  const selected =
+    document
+      .getElementById(
+        "medicineDays"
+      )
+      .value;
+
+
+
+  if (
+    selected !==
+      "其他"
+  ) {
+
+    return selected;
+
+  }
+
+
+
+  const otherDays =
+    document
+      .getElementById(
+        "otherDays"
       )
       .value
       .trim();
 
 
+
+  if (
+    !otherDays
+  ) {
+
+    return "";
+
+  }
+
+
+
+  return (
+    otherDays +
+    "天"
+  );
+
+}
+
+
+
+/************************************************
+ * 取得取消原因
+ ************************************************/
+
+function getCancelReason() {
+
+
+  const selected =
+    document.querySelector(
+      'input[name="cancelReason"]:checked'
+    );
+
+
+
+  if (
+    !selected
+  ) {
+
+    return "";
+
+  }
+
+
+
+  if (
+    selected.value ===
+      "其他"
+  ) {
+
+
+    const other =
+      document
+        .getElementById(
+          "otherReason"
+        )
+        .value
+        .trim();
+
+
+
+    if (
+      !other
+    ) {
+
+      return "";
+
+    }
+
+
+
+    return (
+      "其他：" +
+      other
+    );
+
+  }
+
+
+
+  return selected.value;
+
+}
+
+
+
+/************************************************
+ * 執行取消
+ ************************************************/
+
+async function cancelMedicine() {
+
+
+  if (
+    !currentRowNumber
+  ) {
+
+    alert(
+      "找不到原始拿藥資料"
+    );
+
+    return;
+
+  }
+
+
+
+  /********************************
+   * 拿藥天數
+   ********************************/
+
+  const medicineDays =
+    getMedicineDays();
+
+
+
+  if (
+    !medicineDays
+  ) {
+
+    alert(
+      "請選擇或輸入拿藥天數"
+    );
+
+    return;
+
+  }
+
+
+
+  /********************************
+   * 日期
+   ********************************/
+
+  const pickupDate =
+    document
+      .getElementById(
+        "pickupDate"
+      )
+      .value;
+
+
+
+  if (
+    !pickupDate
+  ) {
+
+    alert(
+      "請選擇預計取藥日期"
+    );
+
+    return;
+
+  }
+
+
+
+  /********************************
+   * 時段
+   ********************************/
+
+  const pickupPeriod =
+    document
+      .getElementById(
+        "pickupPeriod"
+      )
+      .value;
+
+
+
+  if (
+    !pickupPeriod
+  ) {
+
+    alert(
+      "請選擇預計取藥時段"
+    );
+
+    return;
+
+  }
+
+
+
+  /********************************
+   * 取消原因
+   ********************************/
+
+  const cancelReason =
+    getCancelReason();
+
+
+
+  if (
+    !cancelReason
+  ) {
+
+    const selected =
+      document.querySelector(
+        'input[name="cancelReason"]:checked'
+      );
+
+
+    if (
+      selected &&
+      selected.value ===
+        "其他"
+    ) {
+
+
+      alert(
+        "請填寫其他取消原因"
+      );
+
+
+    } else {
+
+
+      alert(
+        "請選擇取消原因"
+      );
+
+    }
+
+
+    return;
+
+  }
+
+
+
+  /********************************
+   * 組合時間
+   ********************************/
+
+  const pickupTime =
+    pickupDate +
+    " " +
+    pickupPeriod;
+
+
+
+  /********************************
+   * POST資料
+   ********************************/
+
   const payload = {
+
 
     action:
       "cancelMedicine",
 
+
     rowNumber:
       currentRowNumber,
+
 
     userID:
       currentUserID,
 
+
     userName:
       currentUserName,
+
+
+    medicineDays:
+      medicineDays,
+
+
+    pickupTime:
+      pickupTime,
+
 
     cancelReason:
       cancelReason
@@ -223,51 +1723,129 @@ async function cancelMedicine() {
   };
 
 
-  const response =
-    await fetch(
-      GAS_URL,
-      {
 
-        method:
-          "POST",
-
-        body:
-          JSON.stringify(
-            payload
-          )
-
-      }
+  const button =
+    document.getElementById(
+      "cancelButton"
     );
 
 
-  const result =
-    await response.json();
+
+  button.disabled =
+    true;
 
 
-  if (result.success) {
+  button.innerText =
+    "送出中...";
+
+
+
+  try {
+
+
+    const response =
+      await fetch(
+        GAS_URL,
+        {
+
+          method:
+            "POST",
+
+          headers: {
+
+            "Content-Type":
+              "text/plain;charset=utf-8"
+
+          },
+
+          body:
+            JSON.stringify(
+              payload
+            )
+
+        }
+      );
+
+
+
+    if (
+      !response.ok
+    ) {
+
+      throw new Error(
+        "GAS 回應異常"
+      );
+
+    }
+
+
+
+    const result =
+      await response.json();
+
+
+
+    if (
+      !result.success
+    ) {
+
+      throw new Error(
+        result.message ||
+        "取消失敗"
+      );
+
+    }
+
+
+
+    /********************************
+     * 成功畫面
+     ********************************/
+
+    document
+      .getElementById(
+        "mainCard"
+      )
+      .style.display =
+        "none";
+
+
+    document
+      .getElementById(
+        "successPage"
+      )
+      .style.display =
+        "block";
+
+
+    window.scrollTo({
+
+      top: 0,
+
+      behavior:
+        "smooth"
+
+    });
+
+
+
+  } catch(error) {
+
+
+    button.disabled =
+      false;
+
+
+    button.innerText =
+      "確認取消";
+
 
     alert(
-      "已成功取消拿藥申請"
-    );
-
-
-    document.getElementById(
-      "medicineData"
-    ).style.display =
-      "none";
-
-
-    document.getElementById(
-      "status"
-    ).innerText =
-      "✅ 已完成取消";
-
-
-  } else {
-
-    alert(
-      result.message ||
-      "取消失敗"
+      "送出失敗：" +
+      (
+        error.message ||
+        String(error)
+      )
     );
 
   }
@@ -275,6 +1853,7 @@ async function cancelMedicine() {
 }
 
 </script>
+
 
 </body>
 
