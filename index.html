@@ -1540,10 +1540,7 @@
   </div>
 
 </div>
-
-
 <script>
-
 
 /************************************************
  * 設定
@@ -1554,24 +1551,16 @@ const LIFF_ID =
 
 
 const GAS_URL =
-  "https://script.google.com/macros/s/AKfycby1MuKhtiGBlgsm20eavpZtn4fNryc6Hs8pRhE1PZ2Kr6cQ3DM3FnOhNKYPgJ0MYpIbbw/exec";
+  "https://script.google.com/macros/s/AKfycbx8R6oYvW7SVsFbf23gRrUJS73RNHWnuO1OmjYia8MPTHK1Zy7mndU5su5_P1FGr-LXDg/exec";
 
 
 /************************************************
  * 狀態
  ************************************************/
 
-let currentUserID =
-  "";
+let currentUserID = "";
 
-let currentUserName =
-  "";
-
-let currentRowNumber =
-  null;
-
-let foundOriginalRecord =
-  false;
+let currentUserName = "";
 
 
 /************************************************
@@ -1585,7 +1574,7 @@ window.addEventListener(
 
 
 /************************************************
- * LIFF
+ * LIFF登入
  ************************************************/
 
 async function initializePage() {
@@ -1625,7 +1614,18 @@ async function initializePage() {
     ) {
 
       throw new Error(
-        "沒有取得 LINE userID"
+        "沒有取得 LINE USERID"
+      );
+
+    }
+
+
+    if (
+      !currentUserName
+    ) {
+
+      throw new Error(
+        "沒有取得 LINE 稱呼"
       );
 
     }
@@ -1651,7 +1651,15 @@ async function initializePage() {
 
 
 /************************************************
- * 查詢
+ * 查詢最新拿藥資料
+ *
+ * GAS：
+ * 工作表1
+ *
+ * P欄 = LINE稱呼
+ * Q欄 = USERID
+ *
+ * 隱藏列不抓
  ************************************************/
 
 async function loadMedicineData() {
@@ -1661,10 +1669,17 @@ async function loadMedicineData() {
     const url =
       GAS_URL +
       "?action=getLatest" +
+
+      "&userName=" +
+      encodeURIComponent(
+        currentUserName
+      ) +
+
       "&userID=" +
       encodeURIComponent(
         currentUserID
       ) +
+
       "&t=" +
       Date.now();
 
@@ -1704,7 +1719,8 @@ async function loadMedicineData() {
     ) {
 
       showManualMode(
-        "目前沒有找到拿藥申請，請自行填寫取消資料"
+        result.message ||
+        "目前沒有找到可取消的拿藥申請，請自行填寫取消資料"
       );
 
       return;
@@ -1712,13 +1728,9 @@ async function loadMedicineData() {
     }
 
 
-    foundOriginalRecord =
-      true;
-
-
-    currentRowNumber =
-      result.rowNumber;
-
+    /************************************************
+     * 顯示查詢成功
+     ************************************************/
 
     document
       .getElementById(
@@ -1728,6 +1740,10 @@ async function loadMedicineData() {
         "已找到您的拿藥申請，可確認或修改以下資料";
 
 
+    /************************************************
+     * 姓名
+     ************************************************/
+
     document
       .getElementById(
         "name"
@@ -1736,15 +1752,27 @@ async function loadMedicineData() {
         result.name || "";
 
 
+    /************************************************
+     * 原拿藥天數
+     ************************************************/
+
     setMedicineDays(
       result.medicineDays
     );
 
 
+    /************************************************
+     * 原預計取藥時間
+     ************************************************/
+
     setPickupTime(
       result.pickupTime
     );
 
+
+    /************************************************
+     * 顯示表單
+     ************************************************/
 
     document
       .getElementById(
@@ -1778,14 +1806,6 @@ function showManualMode(
   message
 ) {
 
-  foundOriginalRecord =
-    false;
-
-
-  currentRowNumber =
-    null;
-
-
   document
     .getElementById(
       "status"
@@ -1793,6 +1813,11 @@ function showManualMode(
     .innerText =
       message;
 
+
+  /*
+   * 如果有取得LINE名稱
+   * 可以先帶入姓名欄
+   */
 
   if (
     currentUserName
@@ -1819,7 +1844,7 @@ function showManualMode(
 
 
 /************************************************
- * 天數
+ * 拿藥天數
  ************************************************/
 
 function setMedicineDays(
@@ -2004,6 +2029,10 @@ function setPickupTime(
     ).trim();
 
 
+  /************************************************
+   * 日期
+   ************************************************/
+
   const match =
     text.match(
       /(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/
@@ -2047,6 +2076,10 @@ function setPickupTime(
 
   }
 
+
+  /************************************************
+   * 時段
+   ************************************************/
 
   const period =
     document.getElementById(
@@ -2177,10 +2210,14 @@ function getCancelReason() {
 
 
 /************************************************
- * 送出
+ * 送出取消
  ************************************************/
 
 async function cancelMedicine() {
+
+  /************************************************
+   * 畫面資料
+   ************************************************/
 
   const name =
     document
@@ -2215,6 +2252,10 @@ async function cancelMedicine() {
     getCancelReason();
 
 
+  /************************************************
+   * 驗證姓名
+   ************************************************/
+
   if (
     !name
   ) {
@@ -2227,6 +2268,10 @@ async function cancelMedicine() {
 
   }
 
+
+  /************************************************
+   * 驗證天數
+   ************************************************/
 
   if (
     !medicineDays
@@ -2241,6 +2286,10 @@ async function cancelMedicine() {
   }
 
 
+  /************************************************
+   * 驗證日期
+   ************************************************/
+
   if (
     !pickupDate
   ) {
@@ -2253,6 +2302,10 @@ async function cancelMedicine() {
 
   }
 
+
+  /************************************************
+   * 驗證時段
+   ************************************************/
 
   if (
     !pickupPeriod
@@ -2267,6 +2320,10 @@ async function cancelMedicine() {
   }
 
 
+  /************************************************
+   * 驗證取消原因
+   ************************************************/
+
   if (
     !cancelReason
   ) {
@@ -2280,31 +2337,66 @@ async function cancelMedicine() {
   }
 
 
+  /************************************************
+   * LINE背景資料驗證
+   ************************************************/
+
+  if (
+    !currentUserName ||
+    !currentUserID
+  ) {
+
+    alert(
+      "LINE登入資料取得失敗，請重新開啟頁面"
+    );
+
+    return;
+
+  }
+
+
+  /************************************************
+   * 組合預計取藥時間
+   ************************************************/
+
   const pickupTime =
     pickupDate +
     " " +
     pickupPeriod;
 
 
+  /************************************************
+   * 傳給GAS
+   *
+   * 注意：
+   *
+   * 沒有 rowNumber
+   * 沒有 foundOriginalRecord
+   ************************************************/
+
   const payload = {
 
     action:
       "cancelMedicine",
 
-    rowNumber:
-      currentRowNumber,
-
-    foundOriginalRecord:
-      foundOriginalRecord,
-
     name:
       name,
 
-    userID:
-      currentUserID,
-
+    /*
+     * LINE稱呼
+     * 背景傳送
+     * 頁面不顯示
+     */
     userName:
       currentUserName,
+
+    /*
+     * LINE USERID
+     * 背景傳送
+     * 頁面不顯示
+     */
+    userID:
+      currentUserID,
 
     medicineDays:
       medicineDays,
@@ -2317,6 +2409,10 @@ async function cancelMedicine() {
 
   };
 
+
+  /************************************************
+   * 按鈕狀態
+   ************************************************/
 
   const button =
     document.getElementById(
@@ -2333,6 +2429,10 @@ async function cancelMedicine() {
 
 
   try {
+
+    /************************************************
+     * POST給GAS
+     ************************************************/
 
     const response =
       await fetch(
@@ -2358,6 +2458,10 @@ async function cancelMedicine() {
       );
 
 
+    /************************************************
+     * GAS回傳
+     ************************************************/
+
     const result =
       await response.json();
 
@@ -2373,6 +2477,10 @@ async function cancelMedicine() {
 
     }
 
+
+    /************************************************
+     * 成功
+     ************************************************/
 
     document
       .getElementById(
@@ -2402,6 +2510,10 @@ async function cancelMedicine() {
 
   } catch(error) {
 
+    /************************************************
+     * 失敗
+     ************************************************/
+
     button.disabled =
       false;
 
@@ -2423,6 +2535,7 @@ async function cancelMedicine() {
 }
 
 </script>
+
 
 
 </body>
