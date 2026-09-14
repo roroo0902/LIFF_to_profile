@@ -996,22 +996,46 @@
         border-radius: 13px;
       }
 
-      .time-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
+.time-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
 
-        width: 100%;
-        max-width: 100%;
-      }
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+#pickupDate,
+#pickupPeriod {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
 
-      #pickupDate,
-      #pickupPeriod {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        box-sizing: border-box;
-      }
+/* iPhone / Safari 日期欄修正 */
+#pickupDate {
+  display: block;
+
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+
+  box-sizing: border-box;
+
+  -webkit-appearance: none;
+  appearance: none;
+
+  overflow: hidden;
+}
+
+/* iOS 日期文字 */
+#pickupDate::-webkit-date-and-time-value {
+  min-width: 0;
+  width: 100%;
+
+  text-align: center;
+}
 
       .reason-item {
         min-height: 54px;
