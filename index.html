@@ -2027,12 +2027,6 @@ function setPickupTime(value) {
       .replace(/\u3000/g, " ")
       .replace(/\s+/g, " ");
 
-  alert(
-    "GAS pickupTime = [" +
-    text +
-    "]"
-  );
-
   const pickupDate =
     document.getElementById(
       "pickupDate"
@@ -2061,12 +2055,18 @@ function setPickupTime(value) {
     const m =
       String(
         now.getMonth() + 1
-      ).padStart(2, "0");
+      ).padStart(
+        2,
+        "0"
+      );
 
     const d =
       String(
         now.getDate()
-      ).padStart(2, "0");
+      ).padStart(
+        2,
+        "0"
+      );
 
     pickupDate.value =
       `${y}-${m}-${d}`;
@@ -2086,12 +2086,18 @@ function setPickupTime(value) {
       const m =
         String(
           match[2]
-        ).padStart(2, "0");
+        ).padStart(
+          2,
+          "0"
+        );
 
       const d =
         String(
           match[3]
-        ).padStart(2, "0");
+        ).padStart(
+          2,
+          "0"
+        );
 
       pickupDate.value =
         `${y}-${m}-${d}`;
