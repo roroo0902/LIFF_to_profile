@@ -661,19 +661,11 @@
 
 
     /* ==================================================
-       MOBILE
-       只有這一套手機版 CSS
-    ================================================== */
+   MOBILE
+   只有這一套手機版 CSS
+================================================== */
 
-    @media screen and (max-width: 700px) {
-
-      body {
-        padding:
-          10px
-          10px
-          40px;
-      }
-
+@media screen and (max-width: 700px) {
 
       /* HERO */
 
@@ -1006,11 +998,19 @@
 
       .time-grid {
         display: grid;
-
-        grid-template-columns:
-          1fr;
-
+        grid-template-columns: 1fr;
         gap: 10px;
+
+        width: 100%;
+        max-width: 100%;
+      }
+
+      #pickupDate,
+      #pickupPeriod {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
       }
 
       .reason-item {
