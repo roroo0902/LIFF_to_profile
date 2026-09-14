@@ -1767,18 +1767,33 @@ async function loadMedicineData() {
 
 function setPickupTime(value) {
 
-  alert("① setPickupTime 有執行");
-
   alert(
-    "② 收到的 value = [" +
+    "收到的 value = [" +
     String(value) +
     "]"
   );
 
-  const text = String(value || "").trim();
-
   const pickupDate =
     document.getElementById("pickupDate");
+
+  const period =
+    document.getElementById("pickupPeriod");
+
+  // ★ 強制測試
+  pickupDate.value = "2026-09-14";
+  period.value = "上午";
+
+  alert(
+    "日期欄目前值 = [" +
+    pickupDate.value +
+    "]\n" +
+    "時段目前值 = [" +
+    period.value +
+    "]"
+  );
+
+  return;
+}
   /************************************************
    * 1. 今天
    ************************************************/
