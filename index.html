@@ -1765,10 +1765,95 @@ async function loadMedicineData() {
      * 原預計取藥時間
      ************************************************/
 
-    setPickupTime(
-      result.pickupTime
+function setPickupTime(value) {
+
+  const text = String(value || "").trim();
+
+  const pickupDate =
+    document.getElementById("pickupDate");
+
+  /************************************************
+   * 1. 今天
+   ************************************************/
+
+  if (text.includes("今天")) {
+
+    const now = new Date();
+
+    const y = now.getFullYear();
+
+    const m = String(
+      now.getMonth() + 1
+    ).padStart(2, "0");
+
+    const d = String(
+      now.getDate()
+    ).padStart(2, "0");
+
+    pickupDate.value =
+      `${y}-${m}-${d}`;
+
+  } else {
+
+    /************************************************
+     * 2. 完整日期
+     * 支援：
+     * 2026/9/14
+     * 2026-9-14
+     ************************************************/
+
+    const match =
+      text.match(
+        /(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/
+      );
+
+    if (match) {
+
+      const y = match[1];
+
+      const m =
+        String(match[2])
+          .padStart(2, "0");
+
+      const d =
+        String(match[3])
+          .padStart(2, "0");
+
+      pickupDate.value =
+        `${y}-${m}-${d}`;
+    }
+  }
+
+
+  /************************************************
+   * 時段
+   ************************************************/
+
+  const period =
+    document.getElementById(
+      "pickupPeriod"
     );
 
+  if (
+    text.includes("上午")
+  ) {
+
+    period.value = "上午";
+
+  } else if (
+    text.includes("下午")
+  ) {
+
+    period.value = "下午";
+
+  } else if (
+    text.includes("晚上")
+  ) {
+
+    period.value = "晚上";
+  }
+
+}
 
     /************************************************
      * 顯示表單
