@@ -1762,16 +1762,21 @@ async function loadMedicineData() {
 
 
     /************************************************
-     * 原預計取藥時間
-     ************************************************/
+ * 原預計取藥時間
+ ************************************************/
 
 function setPickupTime(value) {
+
+  alert(
+    "GAS pickupTime = [" +
+    String(value) +
+    "]"
+  );
 
   const text = String(value || "").trim();
 
   const pickupDate =
     document.getElementById("pickupDate");
-
   /************************************************
    * 1. 今天
    ************************************************/
