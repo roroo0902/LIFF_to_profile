@@ -974,6 +974,12 @@
 
       .field {
         margin-bottom: 22px;
+
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        box-sizing: border-box;
       }
 
       .label {
@@ -996,46 +1002,60 @@
         border-radius: 13px;
       }
 
-.time-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 10px;
+      .time-grid {
+        display: block;
 
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-}
-#pickupDate,
-#pickupPeriod {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-}
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
 
-/* iPhone / Safari 日期欄修正 */
-#pickupDate {
-  display: block;
+        margin: 0 !important;
+        padding: 0 !important;
 
-  width: 100% !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
+        box-sizing: border-box !important;
+      }
 
-  box-sizing: border-box;
+      #pickupDate,
+      #pickupPeriod {
+        display: block;
 
-  -webkit-appearance: none;
-  appearance: none;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
 
-  overflow: hidden;
-}
+        margin-left: 0 !important;
+        margin-right: 0 !important;
 
-/* iOS 日期文字 */
-#pickupDate::-webkit-date-and-time-value {
-  min-width: 0;
-  width: 100%;
+        box-sizing: border-box !important;
+      }
 
-  text-align: center;
-}
+      #pickupDate {
+        inline-size: 100% !important;
+
+        -webkit-appearance: none !important;
+        appearance: none !important;
+
+        overflow: hidden !important;
+
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+      }
+
+      #pickupDate::-webkit-date-and-time-value {
+        display: block;
+
+        width: 100% !important;
+        min-width: 0 !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        text-align: center;
+      }
+
+      #pickupPeriod {
+        margin-top: 10px !important;
+      }
 
       .reason-item {
         min-height: 54px;
